@@ -1,6 +1,6 @@
 # devdocs-macos
 
-A [DevDocs API Documentation][1] viewer for macOS.
+An unofficial [DevDocs API Documentation][1] viewer for macOS.
 
 ## License
 
