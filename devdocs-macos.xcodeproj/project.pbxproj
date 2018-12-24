@@ -11,7 +11,8 @@
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
 		06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */; };
-		06EAE7FD21D0CE3E00F7C921 /* DocumentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */; };
+		06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */; };
+		06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +22,8 @@
 		06EAE7F121D0CB3E00F7C921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		06EAE7F321D0CB3E00F7C921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentationWindow.xib; sourceTree = "<group>"; };
-		06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationController.swift; sourceTree = "<group>"; };
+		06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindowController.swift; sourceTree = "<group>"; };
+		06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +61,8 @@
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
 				06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */,
-				06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */,
+				06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */,
+				06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */,
 			);
 			path = "devdocs-macos";
 			sourceTree = "<group>";
@@ -135,7 +138,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06EAE7FD21D0CE3E00F7C921 /* DocumentationController.swift in Sources */,
+				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
+				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +277,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "devdocs-macos/devdocs_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "devdocs-macos/Info.plist";
@@ -291,7 +294,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "devdocs-macos/devdocs_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "devdocs-macos/Info.plist";

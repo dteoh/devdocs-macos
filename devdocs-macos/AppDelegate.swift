@@ -4,7 +4,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let dc = DocumentationController.init(window: nil);
+        let dc = DocumentationWindowController.init(window: nil);
         dc.showWindow(self);
         // Insert code here to initialize your application
     }
