@@ -10,6 +10,8 @@
 		06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */; };
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
+		06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */; };
+		06EAE7FD21D0CE3E00F7C921 /* DocumentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +20,8 @@
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06EAE7F121D0CB3E00F7C921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		06EAE7F321D0CB3E00F7C921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06EAE7F421D0CB3E00F7C921 /* devdocs_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = devdocs_macos.entitlements; sourceTree = "<group>"; };
+		06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentationWindow.xib; sourceTree = "<group>"; };
+		06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +58,8 @@
 				06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
-				06EAE7F421D0CB3E00F7C921 /* devdocs_macos.entitlements */,
+				06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */,
+				06EAE7FC21D0CE3E00F7C921 /* DocumentationController.swift */,
 			);
 			path = "devdocs-macos";
 			sourceTree = "<group>";
@@ -119,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */,
+				06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */,
 				06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06EAE7FD21D0CE3E00F7C921 /* DocumentationController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

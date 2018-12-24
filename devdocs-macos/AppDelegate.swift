@@ -3,9 +3,9 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let dc = DocumentationController.init(window: nil);
+        dc.showWindow(self);
         // Insert code here to initialize your application
     }
 
