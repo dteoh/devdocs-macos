@@ -13,6 +13,15 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate {
 
     private func setupWebView() {
         let config = WKWebViewConfiguration()
+
+        let userContentController = WKUserContentController()
+        config.userContentController = userContentController;
+
+        if let notMobileScript = readUserScript("not-mobile") {
+            let notMobile = WKUserScript(source: notMobileScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+            userContentController.addUserScript(notMobile)
+        }
+
         webView = WKWebView.init(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
@@ -43,14 +52,15 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate {
 
     // MARK:- JS integration
 
-    var documentTitle: String? {
-        var title: String?
-        webView.evaluateJavaScript("$(\"head title\").innerText") { (result, error) in
-            if let result = result as? String {
-                title = result
-            }
+    func readUserScript(_ name: String) -> String? {
+        guard let scriptPath = Bundle.main.path(forResource: name, ofType: "js", inDirectory: "user-scripts") else {
+            return nil
         }
-        return title;
+        do {
+            return try String(contentsOfFile: scriptPath)
+        } catch {
+            return nil
+        }
     }
 
 }
