@@ -3,10 +3,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        let _ = DocumentationController.shared
+    }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let dc = DocumentationWindowController.init(window: nil);
-        dc.showWindow(self);
-        // Insert code here to initialize your application
+        DocumentationController.shared.newDocument(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

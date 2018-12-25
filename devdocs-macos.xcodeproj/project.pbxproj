@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
+		06B5A71C21D22DBA007823B2 /* DocumentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A71B21D22DBA007823B2 /* DocumentationController.swift */; };
 		06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */; };
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
+		06B5A71B21D22DBA007823B2 /* DocumentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationController.swift; sourceTree = "<group>"; };
 		06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "devdocs-macos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */,
+				06B5A71B21D22DBA007823B2 /* DocumentationController.swift */,
 				06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
@@ -144,6 +147,7 @@
 			files = (
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
+				06B5A71C21D22DBA007823B2 /* DocumentationController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
