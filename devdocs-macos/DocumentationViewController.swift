@@ -1,9 +1,11 @@
 import Cocoa
 import WebKit
 
-class DocumentationViewController: NSViewController, WKNavigationDelegate {
+class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
-    var webView: WKWebView!
+    private var webView: WKWebView!
+
+    @objc dynamic var documentTitle: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +19,16 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate {
         let userContentController = WKUserContentController()
         config.userContentController = userContentController;
 
+        userContentController.add(self, name: "vcBus");
+
         if let notMobileScript = readUserScript("not-mobile") {
             let notMobile = WKUserScript(source: notMobileScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
             userContentController.addUserScript(notMobile)
+        }
+
+        if let titleObserverScript = readUserScript("title-observer") {
+            let titleObserver = WKUserScript(source: titleObserverScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(titleObserver)
         }
 
         webView = WKWebView.init(frame: .zero, configuration: config)
@@ -40,19 +49,28 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate {
         webView.load(request)
     }
 
-    // MARK:- WKNavigationDelegate
-
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print(documentTitle ?? "no title")
-    }
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print(documentTitle ?? "no title")
+    // MARK:- WKScriptMessageHandler
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let msg = message.body as? [AnyHashable: Any] else {
+            return
+        }
+        guard let type = msg["type"] as? String else {
+            return
+        }
+        guard let args = msg["args"] as? [AnyHashable: Any] else {
+            return
+        }
+        switch type {
+        case "titleNotification":
+            self.documentTitle = args["title"] as! String?
+        default:
+            return
+        }
     }
 
     // MARK:- JS integration
 
-    func readUserScript(_ name: String) -> String? {
+    private func readUserScript(_ name: String) -> String? {
         guard let scriptPath = Bundle.main.path(forResource: name, ofType: "js", inDirectory: "user-scripts") else {
             return nil
         }
