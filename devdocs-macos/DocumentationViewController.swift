@@ -62,7 +62,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         }
         switch type {
         case "titleNotification":
-            self.documentTitle = args["title"] as! String?
+            handleTitleNotification(args);
         default:
             return
         }
@@ -78,6 +78,18 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
             return try String(contentsOfFile: scriptPath)
         } catch {
             return nil
+        }
+    }
+
+    private func handleTitleNotification(_ args: [AnyHashable: Any]) {
+        guard let title = args["title"] as! String? else {
+            return
+        }
+        let suffix = " — DevDocs"
+        if title.hasSuffix(suffix) {
+            self.documentTitle = title.replacingOccurrences(of: suffix, with: "")
+        } else {
+            self.documentTitle = title
         }
     }
 
