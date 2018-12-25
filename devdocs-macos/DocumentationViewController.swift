@@ -31,6 +31,11 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
             userContentController.addUserScript(titleObserver)
         }
 
+        if let darkModeScript = readUserScript("dark-mode") {
+            let darkMode = WKUserScript(source: darkModeScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(darkMode)
+        }
+
         webView = WKWebView.init(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
@@ -69,6 +74,14 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
     }
 
     // MARK:- JS integration
+
+    func useDarkMode(_ using: Bool) {
+        if using {
+            webView.evaluateJavaScript("useDarkMode(true);")
+        } else {
+            webView.evaluateJavaScript("useDarkMode(false);")
+        }
+    }
 
     private func readUserScript(_ name: String) -> String? {
         guard let scriptPath = Bundle.main.path(forResource: name, ofType: "js", inDirectory: "user-scripts") else {

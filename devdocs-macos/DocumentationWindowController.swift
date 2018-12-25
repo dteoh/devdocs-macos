@@ -13,7 +13,11 @@ class DocumentationWindowController: NSWindowController {
 
     override func windowDidLoad() {
         observations = Set()
+        observeDocumentTitle()
+        observeEffectiveAppearance()
+    }
 
+    private func observeDocumentTitle() {
         if let dvc = documentationViewController {
             observations.insert(
                 dvc.observe(\DocumentationViewController.documentTitle) { (dvc, _) in
@@ -22,4 +26,25 @@ class DocumentationWindowController: NSWindowController {
             )
         }
     }
+
+    private func observeEffectiveAppearance() {
+        if let window = self.window {
+            observations.insert(
+                window.observe(\NSWindow.effectiveAppearance) { (win, _) in
+                    guard let dvc = self.documentationViewController else {
+                        return
+                    }
+                    switch window.effectiveAppearance.name {
+                    case .aqua:
+                        dvc.useDarkMode(false)
+                    case .darkAqua:
+                        dvc.useDarkMode(true)
+                    default:
+                        break;
+                    }
+                }
+            )
+        }
+    }
+
 }
