@@ -3,13 +3,26 @@ import WebKit
 
 class DocumentationViewController: NSViewController, WKNavigationDelegate {
 
-    var webView: WKWebView {
-        return view as! WKWebView
-    }
+    var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupWebView()
         loadWebsite()
+    }
+
+    private func setupWebView() {
+        let config = WKWebViewConfiguration()
+        webView = WKWebView.init(frame: .zero, configuration: config)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.navigationDelegate = self
+        webView.wantsLayer = true
+
+        view.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 
     private func loadWebsite() {
