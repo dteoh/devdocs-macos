@@ -6,6 +6,12 @@
                 title: $('head title').innerText,
             },
         });
+        window.webkit.messageHandlers.vcBus.postMessage({
+            type: 'locationNotification',
+            args: {
+                location: document.location.toString(),
+            },
+        });
     });
 
     var titleEl = document.querySelector('title');

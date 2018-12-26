@@ -35,9 +35,9 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
             userContentController.addUserScript(integration)
         }
 
-        if let titleObserverScript = readUserScript("title-observer") {
-            let titleObserver = WKUserScript(source: titleObserverScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            userContentController.addUserScript(titleObserver)
+        if let pageObserverScript = readUserScript("page-observer") {
+            let pageObserver = WKUserScript(source: pageObserverScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(pageObserver)
         }
 
         if let uiSettingsScript = readUserScript("ui-settings") {
@@ -72,12 +72,17 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         }
         switch type {
         case "afterInit":
-            handleAfterInit();
+            handleAfterInit()
         case "titleNotification":
             guard let args = msg["args"] as? [AnyHashable: Any] else {
                 return
             }
-            handleTitleNotification(args);
+            handleTitleNotification(args)
+        case "locationNotification":
+            guard let args = msg["args"] as? [AnyHashable: Any] else {
+                return
+            }
+            handleLocationNotification(args)
         default:
             return
         }
@@ -126,6 +131,13 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         } else {
             self.documentTitle = title
         }
+    }
+
+    private func handleLocationNotification(_ args: [AnyHashable: Any]) {
+        guard let location = args["location"] as! String? else {
+            return
+        }
+        self.currentURL = URL(string: location)
     }
 
 }

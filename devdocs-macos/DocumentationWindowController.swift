@@ -24,6 +24,7 @@ class DocumentationWindowController: NSWindowController {
     override func windowDidLoad() {
         observeViewerState()
         observeDocumentTitle()
+        observeDocumentLocation()
         observeEffectiveAppearance()
     }
 
@@ -55,6 +56,15 @@ class DocumentationWindowController: NSWindowController {
         observations.insert(
             dvc.observe(\DocumentationViewController.documentTitle) { (dvc, _) in
                 self.window?.title = dvc.documentTitle ?? "DevDocs"
+            }
+        )
+    }
+
+    private func observeDocumentLocation() {
+        guard let dvc = documentationViewController else { return }
+        observations.insert(
+            dvc.observe(\DocumentationViewController.currentURL) { (dvc, _) in
+                self.documentation.url = dvc.currentURL
             }
         )
     }
