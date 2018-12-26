@@ -11,6 +11,7 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
 
     func newWindow() {
         let dwc = DocumentationWindowController.init(window: nil)
+        dwc.documentation = Documentation.init()
         dwc.window?.delegate = self
 
         windowControllers.insert(dwc)

@@ -5,14 +5,23 @@ class DocumentationWindowController: NSWindowController {
 
     @IBOutlet weak var documentationViewController: DocumentationViewController?
 
+    var documentation: Documentation!
     private var observations: Set<NSKeyValueObservation>!
 
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("DocumentationWindow")
     }
 
-    override func windowDidLoad() {
+    override func awakeFromNib() {
+        guard let dvc = documentationViewController else { return }
+        dvc.currentURL = documentation.url
+    }
+
+    override func windowWillLoad() {
         observations = Set()
+    }
+
+    override func windowDidLoad() {
         observeViewerState()
         observeDocumentTitle()
         observeEffectiveAppearance()

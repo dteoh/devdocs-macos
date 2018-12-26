@@ -9,6 +9,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         case ready
     }
 
+    var currentURL: URL?
     private var webView: WKWebView!
 
     @objc dynamic var documentTitle: String?
@@ -57,8 +58,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
     }
 
     private func loadWebsite() {
-        let url = URL(string: "https://devdocs.io")
-        let request = URLRequest(url: url!)
+        let request = URLRequest(url: currentURL!)
         webView.load(request)
     }
 
