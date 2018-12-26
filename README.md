@@ -14,6 +14,19 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 
 Pre-built binaries can be downloaded from the [releases page][2].
 
+Unzip, drag the app to Applications, and then run it.
+
+### Homebrew
+
+If you wish to install the application from Homebrew:
+
+```
+$ brew tap dteoh/devdocs
+$ brew cask install devdocs-macos
+```
+
+The application will live at `/Applications/DevDocs.app`.
+
 ### Compatibility
 
 The app is currently developed on Mojave and only support for Mojave can be
