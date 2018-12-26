@@ -1,6 +1,6 @@
 import Cocoa
 
-class DocumentationWindows: NSObject {
+class DocumentationWindows: NSObject, NSWindowDelegate {
     private var windowControllers: Set<DocumentationWindowController>
 
     static let shared = DocumentationWindows()
@@ -11,10 +11,19 @@ class DocumentationWindows: NSObject {
 
     func newWindow() {
         let dwc = DocumentationWindowController.init(window: nil)
-        windowControllers.insert(dwc)
+        dwc.window?.delegate = self
 
-        let documentation = Documentation.init()
+        windowControllers.insert(dwc)
 
         dwc.showWindow(self)
     }
+
+    func windowWillClose(_ notification: Notification) {
+        guard let window = notification.object as! NSWindow? else { return }
+        guard let dwc = window.windowController as! DocumentationWindowController? else {
+            return
+        }
+        windowControllers.remove(dwc)
+    }
+
 }
