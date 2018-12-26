@@ -43,7 +43,13 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
 
     func restore() {
         if let urls = Storage.getLocations() {
-            urls.forEach { url in
+            urls.filter { url -> Bool in
+                if let host = url.host {
+                    return host == "devdocs.io"
+                } else {
+                    return false
+                }
+            }.forEach { url in
                 newWindowFor(documentation: Documentation.init(withURL: url))
             }
         } else {
