@@ -14,7 +14,7 @@ class DocumentationWindowController: NSWindowController {
 
     override func awakeFromNib() {
         guard let dvc = documentationViewController else { return }
-        dvc.currentURL = documentation.url
+        dvc.documentURL = documentation.url
     }
 
     override func windowWillLoad() {
@@ -24,7 +24,7 @@ class DocumentationWindowController: NSWindowController {
     override func windowDidLoad() {
         observeViewerState()
         observeDocumentTitle()
-        observeDocumentLocation()
+        observeDocumentURL()
         observeEffectiveAppearance()
     }
 
@@ -60,11 +60,11 @@ class DocumentationWindowController: NSWindowController {
         )
     }
 
-    private func observeDocumentLocation() {
+    private func observeDocumentURL() {
         guard let dvc = documentationViewController else { return }
         observations.insert(
-            dvc.observe(\DocumentationViewController.currentURL) { (dvc, _) in
-                self.documentation.url = dvc.currentURL
+            dvc.observe(\DocumentationViewController.documentURL) { (dvc, _) in
+                self.documentation.url = dvc.documentURL
             }
         )
     }

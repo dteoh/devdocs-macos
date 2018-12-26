@@ -9,10 +9,10 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         case ready
     }
 
-    var currentURL: URL?
     private var webView: WKWebView!
 
     @objc dynamic var documentTitle: String?
+    @objc dynamic var documentURL: URL?
     @objc dynamic var viewerState: ViewerState = .blank
 
     override func viewDidLoad() {
@@ -58,7 +58,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
     }
 
     private func loadWebsite() {
-        let request = URLRequest(url: currentURL!)
+        let request = URLRequest(url: documentURL!)
         webView.load(request)
     }
 
@@ -137,7 +137,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         guard let location = args["location"] as! String? else {
             return
         }
-        self.currentURL = URL(string: location)
+        self.documentURL = URL(string: location)
     }
 
 }
