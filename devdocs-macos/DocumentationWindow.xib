@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="DocumentationWindowController" customModule="devdocs_macos" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="DocumentationWindowController" customModule="DevDocs" customModuleProvider="target">
             <connections>
                 <outlet property="documentationViewController" destination="f61-KY-zVD" id="SGK-n1-U1U"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LfB-8c-kAm"/>
@@ -13,7 +13,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="preferred" titlebarAppearsTransparent="YES" id="QvC-M9-y7g">
+        <window title="DevDocs" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="preferred" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="600"/>
@@ -24,7 +24,7 @@
             </view>
             <point key="canvasLocation" x="-106" y="107"/>
         </window>
-        <customObject id="f61-KY-zVD" customClass="DocumentationViewController" customModule="devdocs_macos" customModuleProvider="target">
+        <customObject id="f61-KY-zVD" customClass="DocumentationViewController" customModule="DevDocs" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="NgT-co-pdm"/>
             </connections>
