@@ -7,8 +7,8 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 ## Features
 
 - [x] Tabs
-- [x] Global Shortcut (Option + Space)
-- [x] Automatic Dark/Light mode
+- [x] Global shortcut (<kbd>Option+Space</kbd>)
+- [x] Automatic dark/light mode UI
 
 ## Download & Install
 
