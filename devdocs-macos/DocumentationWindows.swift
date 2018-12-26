@@ -13,6 +13,10 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
         newWindowFor(documentation: Documentation.init())
     }
 
+    func newWindowFor(url: URL) {
+        newWindowFor(documentation: Documentation.init(withURL: url))
+    }
+
     func windowWillClose(_ notification: Notification) {
         guard let window = notification.object as! NSWindow? else { return }
         guard let dwc = window.windowController as! DocumentationWindowController? else {
@@ -50,7 +54,7 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
                     return false
                 }
             }.forEach { url in
-                newWindowFor(documentation: Documentation.init(withURL: url))
+                newWindowFor(url: url)
             }
         } else {
             newWindow()

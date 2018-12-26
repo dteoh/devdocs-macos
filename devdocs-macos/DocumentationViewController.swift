@@ -78,6 +78,11 @@ class DocumentationViewController:
             return nil
         }
 
+        if let host = requestURL.host, host == "devdocs.io" {
+            DocumentationWindows.shared.newWindowFor(url: requestURL)
+            return nil
+        }
+
         if let scheme = requestURL.scheme {
             switch scheme {
             case "http", "https", "mailto":
