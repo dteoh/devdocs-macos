@@ -22,7 +22,7 @@ provided.
 ## License
 
 ```
-devdocs-macos
+DevDocs for macOS
 
 Copyright (C) 2018 Douglas Teoh
 
@@ -41,4 +41,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [1]: https://devdocs.io/
-[2]: https://github.com/dteoh/devdocs-macos
+[2]: https://github.com/dteoh/devdocs-macos/releases
