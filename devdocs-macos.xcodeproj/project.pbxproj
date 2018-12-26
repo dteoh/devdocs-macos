@@ -13,6 +13,10 @@
 		06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
 		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
+		06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A73421D36637007823B2 /* DefaultsKit.framework */; };
+		06B5A73621D36637007823B2 /* DefaultsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A73421D36637007823B2 /* DefaultsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */; };
+		06B5A73B21D36680007823B2 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73A21D36680007823B2 /* Storage.swift */; };
 		06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */; };
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
@@ -29,6 +33,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */,
+				06B5A73621D36637007823B2 /* DefaultsKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +48,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06B5A73721D36645007823B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +66,9 @@
 		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
 		06B5A73021D354FC007823B2 /* DocumentationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindows.swift; sourceTree = "<group>"; };
 		06B5A73221D35552007823B2 /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
+		06B5A73421D36637007823B2 /* DefaultsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DefaultsKit.framework; path = Carthage/Build/Mac/DefaultsKit.framework; sourceTree = "<group>"; };
+		06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = DefaultsKit.framework.dSYM; path = Carthage/Build/Mac/DefaultsKit.framework.dSYM; sourceTree = "<group>"; };
+		06B5A73A21D36680007823B2 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "devdocs-macos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */,
+				06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +95,8 @@
 		06B5A72921D3492F007823B2 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				06B5A73421D36637007823B2 /* DefaultsKit.framework */,
+				06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */,
 				06B5A72621D34916007823B2 /* HotKey.framework */,
 				06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */,
 			);
@@ -112,6 +133,7 @@
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06B5A71921D2013D007823B2 /* user-scripts */,
+				06B5A73A21D36680007823B2 /* Storage.swift */,
 			);
 			path = "devdocs-macos";
 			sourceTree = "<group>";
@@ -128,6 +150,7 @@
 				06EAE7E721D0CB3D00F7C921 /* Resources */,
 				06B5A72221D34895007823B2 /* Embed Frameworks */,
 				06B5A72321D348B1007823B2 /* CopyFiles */,
+				06B5A73721D36645007823B2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -195,6 +218,7 @@
 				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
+				06B5A73B21D36680007823B2 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,7 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
     }
 
     func newWindow() {
-        let dwc = DocumentationWindowController.init(window: nil)
-        dwc.documentation = Documentation.init()
-        dwc.window?.delegate = self
-
-        windowControllers.insert(dwc)
-
-        dwc.showWindow(self)
+        newWindowFor(documentation: Documentation.init())
     }
 
     func windowWillClose(_ notification: Notification) {
@@ -25,6 +19,36 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
             return
         }
         windowControllers.remove(dwc)
+    }
+
+    private func newWindowFor(documentation: Documentation) {
+        let dwc = DocumentationWindowController.init(window: nil)
+        dwc.documentation = documentation
+        dwc.window?.delegate = self
+
+        windowControllers.insert(dwc)
+
+        dwc.showWindow(self)
+    }
+
+    // MARK:- State restoration
+
+    func persist() {
+        var urls = [URL]()
+        windowControllers.forEach { dwc in
+            urls.append(dwc.documentation.url)
+        }
+        Storage.setLocations(urls)
+    }
+
+    func restore() {
+        if let urls = Storage.getLocations() {
+            urls.forEach { url in
+                newWindowFor(documentation: Documentation.init(withURL: url))
+            }
+        } else {
+            newWindow()
+        }
     }
 
 }

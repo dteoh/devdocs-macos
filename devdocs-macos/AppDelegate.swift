@@ -12,12 +12,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupHotKey()
-        DocumentationWindows.shared.newWindow()
-//        DocumentationController.shared.newDocument(self)
+        DocumentationWindows.shared.restore()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        DocumentationWindows.shared.persist()
     }
 
     @IBAction func newTab(sender: Any) {
