@@ -65,13 +65,7 @@
                         <items>
                             <menuItem title="New Tab" keyEquivalent="t" id="Was-JA-tGl">
                                 <connections>
-                                    <action selector="newDocument:" target="2J4-Js-DVl" id="Fxb-i2-Hra"/>
-                                    <binding destination="2J4-Js-DVl" name="enabled" keyPath="self" id="hqp-ek-138">
-                                        <dictionary key="options">
-                                            <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                            <string key="NSValueTransformerName">NSIsNotNil</string>
-                                        </dictionary>
-                                    </binding>
+                                    <action selector="newTabWithSender:" target="Voe-Tx-rLC" id="Swf-eT-1ST"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
@@ -647,6 +641,5 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="2J4-Js-DVl" customClass="DocumentationController" customModule="devdocs_macos" customModuleProvider="target"/>
     </objects>
 </document>

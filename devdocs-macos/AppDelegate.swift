@@ -7,16 +7,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var hotKey: HotKey!
 
     func applicationWillFinishLaunching(_ notification: Notification) {
-        let _ = DocumentationController.shared
+        let _ = DocumentationWindows.shared
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupHotKey()
-        DocumentationController.shared.newDocument(self)
+        DocumentationWindows.shared.newWindow()
+//        DocumentationController.shared.newDocument(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+
+    @IBAction func newTab(sender: Any) {
+        DocumentationWindows.shared.newWindow()
     }
 
     private func setupHotKey() {

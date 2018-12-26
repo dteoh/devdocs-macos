@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
-		06B5A71C21D22DBA007823B2 /* DocumentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A71B21D22DBA007823B2 /* DocumentationController.swift */; };
 		06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */; };
 		06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; };
 		06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
+		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
 		06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */; };
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
@@ -46,9 +47,10 @@
 
 /* Begin PBXFileReference section */
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
-		06B5A71B21D22DBA007823B2 /* DocumentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationController.swift; sourceTree = "<group>"; };
 		06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
 		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
+		06B5A73021D354FC007823B2 /* DocumentationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindows.swift; sourceTree = "<group>"; };
+		06B5A73221D35552007823B2 /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "devdocs-macos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,13 +103,14 @@
 			isa = PBXGroup;
 			children = (
 				06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */,
-				06B5A71B21D22DBA007823B2 /* DocumentationController.swift */,
 				06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */,
-				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
-				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
+				06B5A73221D35552007823B2 /* Documentation.swift */,
+				06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */,
 				06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */,
 				06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */,
-				06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */,
+				06B5A73021D354FC007823B2 /* DocumentationWindows.swift */,
+				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
+				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06B5A71921D2013D007823B2 /* user-scripts */,
 			);
 			path = "devdocs-macos";
@@ -188,8 +191,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
+				06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */,
+				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
-				06B5A71C21D22DBA007823B2 /* DocumentationController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
