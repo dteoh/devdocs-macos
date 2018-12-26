@@ -69,7 +69,7 @@
 		06B5A73421D36637007823B2 /* DefaultsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DefaultsKit.framework; path = Carthage/Build/Mac/DefaultsKit.framework; sourceTree = "<group>"; };
 		06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = DefaultsKit.framework.dSYM; path = Carthage/Build/Mac/DefaultsKit.framework.dSYM; sourceTree = "<group>"; };
 		06B5A73A21D36680007823B2 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "devdocs-macos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06EAE7E921D0CB3D00F7C921 /* DevDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06EAE7F121D0CB3E00F7C921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		06EAE7EA21D0CB3D00F7C921 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */,
+				06EAE7E921D0CB3D00F7C921 /* DevDocs.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,9 +141,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		06EAE7E821D0CB3D00F7C921 /* devdocs-macos */ = {
+		06EAE7E821D0CB3D00F7C921 /* DevDocs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06EAE7F721D0CB3E00F7C921 /* Build configuration list for PBXNativeTarget "devdocs-macos" */;
+			buildConfigurationList = 06EAE7F721D0CB3E00F7C921 /* Build configuration list for PBXNativeTarget "DevDocs" */;
 			buildPhases = (
 				06EAE7E521D0CB3D00F7C921 /* Sources */,
 				06EAE7E621D0CB3D00F7C921 /* Frameworks */,
@@ -156,9 +156,9 @@
 			);
 			dependencies = (
 			);
-			name = "devdocs-macos";
+			name = DevDocs;
 			productName = "devdocs-macos";
-			productReference = 06EAE7E921D0CB3D00F7C921 /* devdocs-macos.app */;
+			productReference = 06EAE7E921D0CB3D00F7C921 /* DevDocs.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +176,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 06EAE7E421D0CB3D00F7C921 /* Build configuration list for PBXProject "devdocs-macos" */;
+			buildConfigurationList = 06EAE7E421D0CB3D00F7C921 /* Build configuration list for PBXProject "DevDocs" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -189,7 +189,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06EAE7E821D0CB3D00F7C921 /* devdocs-macos */,
+				06EAE7E821D0CB3D00F7C921 /* DevDocs */,
 			);
 		};
 /* End PBXProject section */
@@ -396,7 +396,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06EAE7E421D0CB3D00F7C921 /* Build configuration list for PBXProject "devdocs-macos" */ = {
+		06EAE7E421D0CB3D00F7C921 /* Build configuration list for PBXProject "DevDocs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06EAE7F521D0CB3E00F7C921 /* Debug */,
@@ -405,7 +405,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06EAE7F721D0CB3E00F7C921 /* Build configuration list for PBXNativeTarget "devdocs-macos" */ = {
+		06EAE7F721D0CB3E00F7C921 /* Build configuration list for PBXNativeTarget "DevDocs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06EAE7F821D0CB3E00F7C921 /* Debug */,

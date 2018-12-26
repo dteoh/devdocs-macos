@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:devdocs-macos.xcodeproj">
+      location = "self:/Users/dteoh/github/devdocs-macos/DevDocs.xcodeproj">
    </FileRef>
 </Workspace>
