@@ -21,9 +21,9 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
 
         userContentController.add(self, name: "vcBus");
 
-        if let notMobileScript = readUserScript("not-mobile") {
-            let notMobile = WKUserScript(source: notMobileScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
-            userContentController.addUserScript(notMobile)
+        if let integrationScript = readUserScript("integration") {
+            let integration = WKUserScript(source: integrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+            userContentController.addUserScript(integration)
         }
 
         if let titleObserverScript = readUserScript("title-observer") {
@@ -62,11 +62,13 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         guard let type = msg["type"] as? String else {
             return
         }
-        guard let args = msg["args"] as? [AnyHashable: Any] else {
-            return
-        }
         switch type {
+        case "afterInit":
+            handleAfterInit();
         case "titleNotification":
+            guard let args = msg["args"] as? [AnyHashable: Any] else {
+                return
+            }
             handleTitleNotification(args);
         default:
             return
@@ -92,6 +94,10 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         } catch {
             return nil
         }
+    }
+
+    private func handleAfterInit() {
+        print("afterInit")
     }
 
     private func handleTitleNotification(_ args: [AnyHashable: Any]) {
