@@ -1,10 +1,30 @@
-# devdocs-macos
+# DevDocs for macOS
 
 An unofficial [DevDocs API Documentation][1] viewer for macOS.
 
+![App screenshot](./img/screenshot.png?raw=true "DevDocs for macOS screenshot")
+
+## Features
+
+- [x] Tabs
+- [x] Global Shortcut (Option + Space)
+- [x] Automatic Dark/Light mode
+
+## Download & Install
+
+Pre-built binaries can be downloaded from the [releases page][2].
+
+### Compatibility
+
+The app is currently developed on Mojave and only support for Mojave can be
+provided.
+
 ## License
 
- Copyright (C) 2018 Douglas Teoh
+```
+devdocs-macos
+
+Copyright (C) 2018 Douglas Teoh
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,5 +38,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
+```
 
 [1]: https://devdocs.io/
+[2]: https://github.com/dteoh/devdocs-macos
