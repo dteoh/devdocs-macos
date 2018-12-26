@@ -3,12 +3,20 @@ import WebKit
 
 class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
+    @objc enum ViewerState: Int {
+        case blank
+        case initializing
+        case ready
+    }
+
     private var webView: WKWebView!
 
     @objc dynamic var documentTitle: String?
+    @objc dynamic var viewerState: ViewerState = .blank
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewerState = .initializing
         setupWebView()
         loadWebsite()
     }
@@ -31,9 +39,9 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
             userContentController.addUserScript(titleObserver)
         }
 
-        if let darkModeScript = readUserScript("dark-mode") {
-            let darkMode = WKUserScript(source: darkModeScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            userContentController.addUserScript(darkMode)
+        if let uiSettingsScript = readUserScript("ui-settings") {
+            let uiSettings = WKUserScript(source: uiSettingsScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(uiSettings)
         }
 
         webView = WKWebView.init(frame: .zero, configuration: config)
@@ -85,6 +93,14 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         }
     }
 
+    func useNativeScrollbars(_ using: Bool) {
+        if using {
+            webView.evaluateJavaScript("useNativeScrollbars(true);")
+        } else {
+            webView.evaluateJavaScript("useNativeScrollbars(false);")
+        }
+    }
+
     private func readUserScript(_ name: String) -> String? {
         guard let scriptPath = Bundle.main.path(forResource: name, ofType: "js", inDirectory: "user-scripts") else {
             return nil
@@ -97,7 +113,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
     }
 
     private func handleAfterInit() {
-        print("afterInit")
+        self.viewerState = .ready
     }
 
     private func handleTitleNotification(_ args: [AnyHashable: Any]) {
