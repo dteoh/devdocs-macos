@@ -1,7 +1,12 @@
 import Cocoa
 import WebKit
 
-class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHandler {
+class DocumentationViewController:
+    NSViewController,
+    WKNavigationDelegate,
+    WKUIDelegate,
+    WKScriptMessageHandler
+{
 
     @objc enum ViewerState: Int {
         case blank
@@ -48,6 +53,7 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         webView = WKWebView.init(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.wantsLayer = true
 
         view.addSubview(webView)
@@ -62,7 +68,30 @@ class DocumentationViewController: NSViewController, WKNavigationDelegate, WKScr
         webView.load(request)
     }
 
+    // MARK:- WKUIDelegate
+
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction,
+                 windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let requestURL = navigationAction.request.url else {
+            return nil
+        }
+
+        if let scheme = requestURL.scheme {
+            switch scheme {
+            case "http", "https", "mailto":
+                NSWorkspace.shared.open(requestURL)
+            default:
+                break;
+            }
+        }
+
+        return nil
+    }
+
     // MARK:- WKScriptMessageHandler
+
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let msg = message.body as? [AnyHashable: Any] else {
             return
