@@ -53,5 +53,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
+### App Icon
+
+The app icon is a contribution courtesy of @micck (#1).
+
+
 [1]: https://devdocs.io/
 [2]: https://github.com/dteoh/devdocs-macos/releases
