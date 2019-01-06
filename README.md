@@ -55,8 +55,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ### App Icon
 
-The app icon is a contribution courtesy of @micck (#1).
+The app icon is a contribution courtesy of [@micck][3] ([#1][4]).
 
 
 [1]: https://devdocs.io/
 [2]: https://github.com/dteoh/devdocs-macos/releases
+[3]: https://github.com/micck
+[4]: https://github.com/dteoh/devdocs-macos/issues/1
