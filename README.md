@@ -1,6 +1,7 @@
 # DevDocs for macOS
 
 [![Release](https://img.shields.io/github/release/dteoh/devdocs-macos.svg)](https://github.com/dteoh/devdocs-macos/releases)
+![Release Date](https://img.shields.io/github/release-date/dteoh/devdocs-macos.svg)
 
 An unofficial [DevDocs API Documentation][1] viewer for macOS.
 
