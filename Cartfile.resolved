@@ -1,2 +1,3 @@
-github "nmdias/DefaultsKit" "0.0.9"
+github "nmdias/DefaultsKit" "0.2.0"
+github "shpakovski/MASShortcut" "2.3.6"
 github "soffes/HotKey" "v0.1.1"

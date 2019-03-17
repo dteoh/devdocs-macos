@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kLq-Ju-4uQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="pQX-pz-Zeh">
+            <objects>
+                <windowController id="kLq-Ju-4uQ" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="preferences" animationBehavior="default" id="uso-Ta-qA4">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="209" height="180"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="kLq-Ju-4uQ" id="RdM-kj-v1g"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="blk-9a-gE8" kind="relationship" relationship="window.shadowedContentViewController" id="D5O-VD-t17"/>
+                    </connections>
+                </windowController>
+                <customObject id="2gl-Vv-8sl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172" y="29"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="wiy-UN-jyf">
+            <objects>
+                <customObject id="alg-kL-Sc7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Preferences" id="blk-9a-gE8" customClass="PreferencesViewController" customModule="DevDocs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="f8M-d3-GrO">
+                        <rect key="frame" x="0.0" y="0.0" width="209" height="180"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zx4-Nc-vZl">
+                                <rect key="frame" x="18" y="143" width="117" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="DevDocs shortcut:" id="sT5-Ua-N3r">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WON-i3-Rin" customClass="MASShortcutView">
+                                <rect key="frame" x="20" y="103" width="169" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="activateAppShortcut" destination="WON-i3-Rin" id="wjq-1l-6mw"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="799.5" y="23"/>
+        </scene>
+    </scenes>
+</document>
