@@ -29,7 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func hotKeyPressed() {
-        NSApp.activate(ignoringOtherApps: true)
-        DocumentationWindows.shared.newWindowIfNoWindow()
+        if NSApp.isActive {
+            NSApp.hide(self)
+        } else {
+            NSApp.activate(ignoringOtherApps: true)
+            DocumentationWindows.shared.newWindowIfNoWindow()
+        }
     }
 }
