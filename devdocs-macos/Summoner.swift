@@ -2,21 +2,27 @@ import Cocoa
 import MASShortcut
 
 class Summoner {
-    static let shared = Summoner();
+    static let shared = Summoner()
 
-    static let prefsKey = "summonKeys";
+    static let prefsKey = "summonKeys"
+
+    static var defaultShortcut: MASShortcut {
+        let modifiers = NSEvent.ModifierFlags([.option])
+        return MASShortcut(keyCode: UInt(kVK_Space), modifierFlags: modifiers.rawValue)
+    }
 
     private init() {
-        // Register MASShortcut defaults.
-        let modifiers = NSEvent.ModifierFlags([.option])
-        let shortcut = MASShortcut(keyCode: UInt(kVK_Space), modifierFlags: modifiers.rawValue)
-        MASShortcutBinder.shared().registerDefaultShortcuts([Summoner.prefsKey : shortcut as Any])
+        if let binder = MASShortcutBinder.shared() {
+            binder.registerDefaultShortcuts([Summoner.prefsKey : Summoner.defaultShortcut])
+        }
     }
 
     func install() {
-        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: Summoner.prefsKey, toAction: {
-            self.hotKeyPressed()
-        })
+        if let binder = MASShortcutBinder.shared(){
+            binder.bindShortcut(withDefaultsKey: Summoner.prefsKey) {
+                self.hotKeyPressed()
+            }
+        }
     }
 
     private func hotKeyPressed() {

@@ -33,6 +33,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="restoreDefaultsWithSender:" target="-2" id="XBR-gg-hEJ"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLs-UG-n2b">
                         <rect key="frame" x="18" y="65" width="111" height="17"/>
