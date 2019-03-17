@@ -12,6 +12,35 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 - [x] Tabs
 - [x] Global shortcut (<kbd>Option+Space</kbd>)
 - [x] Automatic dark/light mode UI
+- [x] Protocol handler integration (handle `devdocs-macos://` URLs)
+
+### Protocol handler integration
+
+Protocol handler integration allows you to control DevDocs through scripts. For
+example:
+
+```
+$ osascript -e 'tell application "DevDocs" to open location "devdocs-macos://search?doc=rails&term=stro"'
+```
+
+... will tell DevDocs to open a new window and search the Rails documentation for
+the term `stro`.
+
+The app supports the following commands. When required parameters are not
+supplied, the command is ignored.
+
+#### `devdocs-macos://search`
+
+This is for launching a search query in a new window.
+
+| Query Parameter | Required | Description
+| --------------- | -------- | -----------
+| term            | Yes      | The search term, eg. `date`
+| doc             | No       | Documentation scope, eg. `js`
+
+#### `devdocs-macos://newWindow`
+
+This opens a new window.
 
 ## Download & Install
 
