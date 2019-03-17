@@ -1,30 +1,22 @@
 import Cocoa
-import HotKey
-
-struct PrefKeyCombo: Codable {
-    let carbonKeyCode: UInt32
-    let carbonModifiers: UInt32
-}
-
-extension DKDefaultsKey {
-    static let summonKeys = DKKey<PrefKeyCombo>("summonKeys")
-}
+import MASShortcut
 
 class Summoner {
     static let shared = Summoner();
 
-    private var hotKey: HotKey!
+    private let prefsKey = "summonKeys";
 
     private init() {
+        // Register MASShortcut defaults.
+        let modifiers = NSEvent.ModifierFlags([.option])
+        let shortcut = MASShortcut(keyCode: UInt(kVK_Space), modifierFlags: modifiers.rawValue)
+        MASShortcutBinder.shared().registerDefaultShortcuts([prefsKey : shortcut as Any])
     }
 
     func install() {
-        let summonKeys = DKDefaults.shared.get(for: .summonKeys).map { combo in
-            KeyCombo.init(carbonKeyCode: combo.carbonKeyCode, carbonModifiers: combo.carbonModifiers)
-        } ?? KeyCombo.init(key: .space, modifiers: [.option])
-
-        hotKey = HotKey.init(keyCombo: summonKeys)
-        hotKey.keyDownHandler = hotKeyPressed
+        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: prefsKey, toAction: {
+            self.hotKeyPressed()
+        })
     }
 
     private func hotKeyPressed() {

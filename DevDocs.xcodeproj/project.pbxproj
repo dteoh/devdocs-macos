@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		06996D2D223DDBEB001507AD /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2C223DDBEB001507AD /* Summoner.swift */; };
 		06996D2F223DE207001507AD /* DK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2E223DE207001507AD /* DK.swift */; };
+		06996D31223DEC68001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D30223DEC68001507AD /* MASShortcut.framework */; };
+		06996D32223DEC68001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D30223DEC68001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06996D34223DEC75001507AD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */; };
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
-		06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */; };
-		06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; };
-		06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
 		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
 		06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A73421D36637007823B2 /* DefaultsKit.framework */; };
@@ -28,7 +28,6 @@
 		6F4E7DCC223DBA0D0074E6F1 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E7DCB223DBA0D0074E6F1 /* Preferences.storyboard */; };
 		6F4E7DCF223DBB7E0074E6F1 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E7DCE223DBB7E0074E6F1 /* PreferencesViewController.swift */; };
 		6F4E7DD5223DBDB70074E6F1 /* MASShortcut.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */; };
-		6F4E7DD9223DC1630074E6F1 /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F4E7DD8223DC1630074E6F1 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F4E7DDB223DC5B00074E6F1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E7DDA223DC5B00074E6F1 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,21 +38,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */,
+				06996D32223DEC68001507AD /* MASShortcut.framework in Embed Frameworks */,
 				06B5A73621D36637007823B2 /* DefaultsKit.framework in Embed Frameworks */,
-				6F4E7DD9223DC1630074E6F1 /* MASShortcut.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06B5A72321D348B1007823B2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		06B5A73721D36645007823B2 /* CopyFiles */ = {
@@ -62,6 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				06996D34223DEC75001507AD /* MASShortcut.framework.dSYM in CopyFiles */,
 				06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +60,8 @@
 /* Begin PBXFileReference section */
 		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
 		06996D2E223DE207001507AD /* DK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DK.swift; sourceTree = "<group>"; };
+		06996D30223DEC68001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
 		06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
 		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
@@ -99,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */,
+				06996D31223DEC68001507AD /* MASShortcut.framework in Frameworks */,
 				06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +114,8 @@
 		06EAE7E021D0CB3D00F7C921 = {
 			isa = PBXGroup;
 			children = (
+				06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */,
+				06996D30223DEC68001507AD /* MASShortcut.framework */,
 				06B5A72921D3492F007823B2 /* Carthage */,
 				06EAE7EB21D0CB3D00F7C921 /* devdocs-macos */,
 				06EAE7EA21D0CB3D00F7C921 /* Products */,
@@ -179,7 +172,6 @@
 				06EAE7E621D0CB3D00F7C921 /* Frameworks */,
 				06EAE7E721D0CB3D00F7C921 /* Resources */,
 				06B5A72221D34895007823B2 /* Embed Frameworks */,
-				06B5A72321D348B1007823B2 /* CopyFiles */,
 				06B5A73721D36645007823B2 /* CopyFiles */,
 			);
 			buildRules = (

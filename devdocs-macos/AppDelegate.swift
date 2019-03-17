@@ -1,11 +1,7 @@
 import Cocoa
-import HotKey
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    private var hotKey: HotKey!
-
     func applicationWillFinishLaunching(_ notification: Notification) {
         let _ = DocumentationWindows.shared
     }
