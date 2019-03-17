@@ -1,17 +1,13 @@
 import Cocoa
-import HotKey
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    private var hotKey: HotKey!
-
     func applicationWillFinishLaunching(_ notification: Notification) {
         let _ = DocumentationWindows.shared
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        setupHotKey()
+        Summoner.shared.install()
         DocumentationWindows.shared.restore()
     }
 
@@ -23,17 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DocumentationWindows.shared.newWindow()
     }
 
-    private func setupHotKey() {
-        hotKey = HotKey(key: .space, modifiers: [.option])
-        hotKey.keyDownHandler = hotKeyPressed
-    }
-
-    private func hotKeyPressed() {
-        if NSApp.isActive {
-            NSApp.hide(self)
-        } else {
-            NSApp.activate(ignoringOtherApps: true)
-            DocumentationWindows.shared.newWindowIfNoWindow()
-        }
+    @IBAction func showAppPreferences(sender: Any) {
+        PreferencesWindowController.shared.showWindow(self)
     }
 }

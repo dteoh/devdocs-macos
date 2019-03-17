@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06996D2D223DDBEB001507AD /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2C223DDBEB001507AD /* Summoner.swift */; };
+		06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; };
+		06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06996D39223DEDC8001507AD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */; };
+		06996D3C223DEF54001507AD /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D3A223DEF54001507AD /* PreferencesWindowController.swift */; };
+		06996D3D223DEF54001507AD /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06996D3B223DEF54001507AD /* PreferencesWindowController.xib */; };
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
-		06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */; };
-		06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; };
-		06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
 		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
 		06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A73421D36637007823B2 /* DefaultsKit.framework */; };
@@ -23,6 +26,7 @@
 		06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */; };
 		06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */; };
 		06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */; };
+		6F4E7DD5223DBDB70074E6F1 /* MASShortcut.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,20 +36,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06B5A72821D34916007823B2 /* HotKey.framework in Embed Frameworks */,
+				06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */,
 				06B5A73621D36637007823B2 /* DefaultsKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		06B5A72321D348B1007823B2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		06B5A73721D36645007823B2 /* CopyFiles */ = {
@@ -55,15 +49,19 @@
 			dstSubfolderSpec = 16;
 			files = (
 				06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */,
+				06996D39223DEDC8001507AD /* MASShortcut.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
+		06996D35223DEDA3001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
+		06996D3A223DEF54001507AD /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		06996D3B223DEF54001507AD /* PreferencesWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
-		06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
-		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
 		06B5A73021D354FC007823B2 /* DocumentationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindows.swift; sourceTree = "<group>"; };
 		06B5A73221D35552007823B2 /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		06B5A73421D36637007823B2 /* DefaultsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DefaultsKit.framework; path = Carthage/Build/Mac/DefaultsKit.framework; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentationWindow.xib; sourceTree = "<group>"; };
 		06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindowController.swift; sourceTree = "<group>"; };
 		06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
+		6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
+		6F4E7DD8223DC1630074E6F1 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */,
+				06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */,
 				06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,8 +97,8 @@
 			children = (
 				06B5A73421D36637007823B2 /* DefaultsKit.framework */,
 				06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */,
-				06B5A72621D34916007823B2 /* HotKey.framework */,
-				06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */,
+				6F4E7DD8223DC1630074E6F1 /* MASShortcut.framework */,
+				6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */,
 			);
 			name = Carthage;
 			sourceTree = "<group>";
@@ -106,6 +106,8 @@
 		06EAE7E021D0CB3D00F7C921 = {
 			isa = PBXGroup;
 			children = (
+				06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */,
+				06996D35223DEDA3001507AD /* MASShortcut.framework */,
 				06B5A72921D3492F007823B2 /* Carthage */,
 				06EAE7EB21D0CB3D00F7C921 /* devdocs-macos */,
 				06EAE7EA21D0CB3D00F7C921 /* Products */,
@@ -129,11 +131,14 @@
 				06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */,
 				06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */,
 				06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */,
+				06996D3A223DEF54001507AD /* PreferencesWindowController.swift */,
+				06996D3B223DEF54001507AD /* PreferencesWindowController.xib */,
 				06B5A73021D354FC007823B2 /* DocumentationWindows.swift */,
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
 				06B5A71921D2013D007823B2 /* user-scripts */,
 				06B5A73A21D36680007823B2 /* Storage.swift */,
+				06996D2C223DDBEB001507AD /* Summoner.swift */,
 			);
 			path = "devdocs-macos";
 			sourceTree = "<group>";
@@ -149,7 +154,6 @@
 				06EAE7E621D0CB3D00F7C921 /* Frameworks */,
 				06EAE7E721D0CB3D00F7C921 /* Resources */,
 				06B5A72221D34895007823B2 /* Embed Frameworks */,
-				06B5A72321D348B1007823B2 /* CopyFiles */,
 				06B5A73721D36645007823B2 /* CopyFiles */,
 			);
 			buildRules = (
@@ -200,7 +204,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */,
+				06996D3D223DEF54001507AD /* PreferencesWindowController.xib in Resources */,
 				06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */,
+				6F4E7DD5223DBDB70074E6F1 /* MASShortcut.framework.dSYM in Resources */,
 				06B5A71A21D2013D007823B2 /* user-scripts in Resources */,
 				06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */,
 			);
@@ -213,7 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06996D2D223DDBEB001507AD /* Summoner.swift in Sources */,
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
+				06996D3C223DEF54001507AD /* PreferencesWindowController.swift in Sources */,
 				06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */,
 				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
