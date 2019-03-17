@@ -11,7 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        setupHotKey()
+        Summoner.shared.install()
         DocumentationWindows.shared.restore()
     }
 
@@ -21,19 +21,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBAction func newTab(sender: Any) {
         DocumentationWindows.shared.newWindow()
-    }
-
-    private func setupHotKey() {
-        hotKey = HotKey(key: .space, modifiers: [.option])
-        hotKey.keyDownHandler = hotKeyPressed
-    }
-
-    private func hotKeyPressed() {
-        if NSApp.isActive {
-            NSApp.hide(self)
-        } else {
-            NSApp.activate(ignoringOtherApps: true)
-            DocumentationWindows.shared.newWindowIfNoWindow()
-        }
     }
 }
