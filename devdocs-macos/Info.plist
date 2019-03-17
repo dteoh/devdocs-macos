@@ -31,6 +31,19 @@
 	<string>Copyright © 2019 Douglas Teoh. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>devdocs-macos</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.dteoh.devdocs-macos</string>
+		</dict>
+	</array>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
