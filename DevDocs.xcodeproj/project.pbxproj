@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		06996D2D223DDBEB001507AD /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2C223DDBEB001507AD /* Summoner.swift */; };
 		06996D2F223DE207001507AD /* DK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2E223DE207001507AD /* DK.swift */; };
-		06996D31223DEC68001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D30223DEC68001507AD /* MASShortcut.framework */; };
-		06996D32223DEC68001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D30223DEC68001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		06996D34223DEC75001507AD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */; };
+		06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; };
+		06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06996D39223DEDC8001507AD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */; };
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
 		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
 		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
@@ -38,7 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06996D32223DEC68001507AD /* MASShortcut.framework in Embed Frameworks */,
+				06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */,
 				06B5A73621D36637007823B2 /* DefaultsKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -50,8 +50,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				06996D34223DEC75001507AD /* MASShortcut.framework.dSYM in CopyFiles */,
 				06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */,
+				06996D39223DEDC8001507AD /* MASShortcut.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,11 +60,9 @@
 /* Begin PBXFileReference section */
 		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
 		06996D2E223DE207001507AD /* DK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DK.swift; sourceTree = "<group>"; };
-		06996D30223DEC68001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
-		06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
+		06996D35223DEDA3001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
-		06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
-		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
 		06B5A73021D354FC007823B2 /* DocumentationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindows.swift; sourceTree = "<group>"; };
 		06B5A73221D35552007823B2 /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		06B5A73421D36637007823B2 /* DefaultsKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DefaultsKit.framework; path = Carthage/Build/Mac/DefaultsKit.framework; sourceTree = "<group>"; };
@@ -90,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06996D31223DEC68001507AD /* MASShortcut.framework in Frameworks */,
+				06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */,
 				06B5A73521D36637007823B2 /* DefaultsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,8 +101,6 @@
 			children = (
 				06B5A73421D36637007823B2 /* DefaultsKit.framework */,
 				06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */,
-				06B5A72621D34916007823B2 /* HotKey.framework */,
-				06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */,
 				6F4E7DD8223DC1630074E6F1 /* MASShortcut.framework */,
 				6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */,
 			);
@@ -114,8 +110,8 @@
 		06EAE7E021D0CB3D00F7C921 = {
 			isa = PBXGroup;
 			children = (
-				06996D33223DEC74001507AD /* MASShortcut.framework.dSYM */,
-				06996D30223DEC68001507AD /* MASShortcut.framework */,
+				06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */,
+				06996D35223DEDA3001507AD /* MASShortcut.framework */,
 				06B5A72921D3492F007823B2 /* Carthage */,
 				06EAE7EB21D0CB3D00F7C921 /* devdocs-macos */,
 				06EAE7EA21D0CB3D00F7C921 /* Products */,
