@@ -11,6 +11,8 @@
 		06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; };
 		06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06996D39223DEDC8001507AD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */; };
+		06996D3C223DEF54001507AD /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D3A223DEF54001507AD /* PreferencesWindowController.swift */; };
+		06996D3D223DEF54001507AD /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06996D3B223DEF54001507AD /* PreferencesWindowController.xib */; };
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
 		06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73021D354FC007823B2 /* DocumentationWindows.swift */; };
 		06B5A73321D35552007823B2 /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73221D35552007823B2 /* Documentation.swift */; };
@@ -24,10 +26,7 @@
 		06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */; };
 		06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */; };
 		06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */; };
-		6F4E7DCC223DBA0D0074E6F1 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E7DCB223DBA0D0074E6F1 /* Preferences.storyboard */; };
-		6F4E7DCF223DBB7E0074E6F1 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E7DCE223DBB7E0074E6F1 /* PreferencesViewController.swift */; };
 		6F4E7DD5223DBDB70074E6F1 /* MASShortcut.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */; };
-		6F4E7DDB223DC5B00074E6F1 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E7DDA223DC5B00074E6F1 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +59,8 @@
 		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
 		06996D35223DEDA3001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 		06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
+		06996D3A223DEF54001507AD /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		06996D3B223DEF54001507AD /* PreferencesWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
 		06B5A73021D354FC007823B2 /* DocumentationWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindows.swift; sourceTree = "<group>"; };
 		06B5A73221D35552007823B2 /* Documentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
@@ -74,11 +75,8 @@
 		06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentationWindow.xib; sourceTree = "<group>"; };
 		06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationWindowController.swift; sourceTree = "<group>"; };
 		06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
-		6F4E7DCB223DBA0D0074E6F1 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
-		6F4E7DCE223DBB7E0074E6F1 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		6F4E7DD3223DBDB70074E6F1 /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		6F4E7DD8223DC1630074E6F1 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
-		6F4E7DDA223DC5B00074E6F1 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,13 +125,14 @@
 		06EAE7EB21D0CB3D00F7C921 /* devdocs-macos */ = {
 			isa = PBXGroup;
 			children = (
-				6F4E7DCA223DB9C90074E6F1 /* Preferences */,
 				06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */,
 				06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */,
 				06B5A73221D35552007823B2 /* Documentation.swift */,
 				06EAE7FE21D0FA4000F7C921 /* DocumentationViewController.swift */,
 				06EAE7FA21D0CD8F00F7C921 /* DocumentationWindow.xib */,
 				06EAE7FC21D0CE3E00F7C921 /* DocumentationWindowController.swift */,
+				06996D3A223DEF54001507AD /* PreferencesWindowController.swift */,
+				06996D3B223DEF54001507AD /* PreferencesWindowController.xib */,
 				06B5A73021D354FC007823B2 /* DocumentationWindows.swift */,
 				06EAE7F321D0CB3E00F7C921 /* Info.plist */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
@@ -142,16 +141,6 @@
 				06996D2C223DDBEB001507AD /* Summoner.swift */,
 			);
 			path = "devdocs-macos";
-			sourceTree = "<group>";
-		};
-		6F4E7DCA223DB9C90074E6F1 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				6F4E7DCB223DBA0D0074E6F1 /* Preferences.storyboard */,
-				6F4E7DCE223DBB7E0074E6F1 /* PreferencesViewController.swift */,
-				6F4E7DDA223DC5B00074E6F1 /* Preferences.swift */,
-			);
-			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +204,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */,
+				06996D3D223DEF54001507AD /* PreferencesWindowController.xib in Resources */,
 				06EAE7FB21D0CD8F00F7C921 /* DocumentationWindow.xib in Resources */,
 				6F4E7DD5223DBDB70074E6F1 /* MASShortcut.framework.dSYM in Resources */,
 				06B5A71A21D2013D007823B2 /* user-scripts in Resources */,
-				6F4E7DCC223DBA0D0074E6F1 /* Preferences.storyboard in Resources */,
 				06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,13 +221,12 @@
 			files = (
 				06996D2D223DDBEB001507AD /* Summoner.swift in Sources */,
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
+				06996D3C223DEF54001507AD /* PreferencesWindowController.swift in Sources */,
 				06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */,
 				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
-				6F4E7DCF223DBB7E0074E6F1 /* PreferencesViewController.swift in Sources */,
 				06B5A73B21D36680007823B2 /* Storage.swift in Sources */,
-				6F4E7DDB223DC5B00074E6F1 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

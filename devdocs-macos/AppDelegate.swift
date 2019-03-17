@@ -18,4 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func newTab(sender: Any) {
         DocumentationWindows.shared.newWindow()
     }
+
+    @IBAction func showAppPreferences(sender: Any) {
+        PreferencesWindowController.shared.showWindow(self)
+    }
 }

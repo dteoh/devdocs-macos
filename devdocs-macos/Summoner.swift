@@ -4,17 +4,17 @@ import MASShortcut
 class Summoner {
     static let shared = Summoner();
 
-    private let prefsKey = "summonKeys";
+    static let prefsKey = "summonKeys";
 
     private init() {
         // Register MASShortcut defaults.
         let modifiers = NSEvent.ModifierFlags([.option])
         let shortcut = MASShortcut(keyCode: UInt(kVK_Space), modifierFlags: modifiers.rawValue)
-        MASShortcutBinder.shared().registerDefaultShortcuts([prefsKey : shortcut as Any])
+        MASShortcutBinder.shared().registerDefaultShortcuts([Summoner.prefsKey : shortcut as Any])
     }
 
     func install() {
-        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: prefsKey, toAction: {
+        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: Summoner.prefsKey, toAction: {
             self.hotKeyPressed()
         })
     }
