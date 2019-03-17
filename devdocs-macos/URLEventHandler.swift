@@ -24,6 +24,35 @@ class URLEventHandler {
         guard let command = url?.host else {
             return
         }
-        print(command)
+
+        switch command {
+        case "search":
+            guard let term = url?.getQueryString(parameter: "term") else {
+                return
+            }
+
+            let q = (
+                url?.getQueryString(parameter: "doc").map({ doc in "\(doc) \(term)" })
+                ?? term
+            ).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+
+            guard let searchURL = URL(string: "https://devdocs.io/#q=\(q ?? "")") else {
+                return
+            }
+
+            DocumentationWindows.shared.newWindowFor(url: searchURL)
+        default:
+            return
+        }
+    }
+}
+
+// From: https://gist.github.com/gillesdemey/509bb8a1a8c576ea215a#gistcomment-2568338
+extension URL {
+    func getQueryString(parameter: String) -> String? {
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first { $0.name == parameter }?
+            .value
     }
 }
