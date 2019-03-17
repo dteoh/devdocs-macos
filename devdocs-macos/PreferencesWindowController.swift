@@ -14,6 +14,7 @@ class PreferencesWindowController: NSWindowController {
         super.windowDidLoad()
 
         if let recorderView = masShortcutRecorderView {
+            recorderView.style = MASShortcutViewStyleTexturedRect
             recorderView.associatedUserDefaultsKey = Summoner.prefsKey
         }
     }
