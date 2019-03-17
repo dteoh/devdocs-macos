@@ -1,5 +1,14 @@
 import Cocoa
-import HotKey;
+import HotKey
+
+struct PrefKeyCombo: Codable {
+    let carbonKeyCode: UInt32
+    let carbonModifiers: UInt32
+}
+
+extension DKDefaultsKey {
+    static let summonKeys = DKKey<PrefKeyCombo>("summonKeys")
+}
 
 class Summoner {
     static let shared = Summoner();
@@ -10,7 +19,11 @@ class Summoner {
     }
 
     func install() {
-        hotKey = HotKey(key: .space, modifiers: [.option])
+        let summonKeys = DKDefaults.shared.get(for: .summonKeys).map { combo in
+            KeyCombo.init(carbonKeyCode: combo.carbonKeyCode, carbonModifiers: combo.carbonModifiers)
+        } ?? KeyCombo.init(key: .space, modifiers: [.option])
+
+        hotKey = HotKey.init(keyCombo: summonKeys)
         hotKey.keyDownHandler = hotKeyPressed
     }
 

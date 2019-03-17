@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06996D2D223DDBEB001507AD /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2C223DDBEB001507AD /* Summoner.swift */; };
+		06996D2F223DE207001507AD /* DK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2E223DE207001507AD /* DK.swift */; };
 		06B5A71A21D2013D007823B2 /* user-scripts in Resources */ = {isa = PBXBuildFile; fileRef = 06B5A71921D2013D007823B2 /* user-scripts */; };
 		06B5A72521D348F0007823B2 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */; };
 		06B5A72721D34916007823B2 /* HotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B5A72621D34916007823B2 /* HotKey.framework */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
+		06996D2E223DE207001507AD /* DK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DK.swift; sourceTree = "<group>"; };
 		06B5A71921D2013D007823B2 /* user-scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "user-scripts"; sourceTree = "<group>"; };
 		06B5A72421D348F0007823B2 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
 		06B5A72621D34916007823B2 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				06B5A71921D2013D007823B2 /* user-scripts */,
 				06B5A73A21D36680007823B2 /* Storage.swift */,
 				06996D2C223DDBEB001507AD /* Summoner.swift */,
+				06996D2E223DE207001507AD /* DK.swift */,
 			);
 			path = "devdocs-macos";
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				06996D2D223DDBEB001507AD /* Summoner.swift in Sources */,
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
+				06996D2F223DE207001507AD /* DK.swift in Sources */,
 				06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */,
 				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
