@@ -35,8 +35,8 @@ This is for launching a search query in a new window.
 
 | Query Parameter | Required | Description
 | --------------- | -------- | -----------
-| term            | Yes      | The search term, eg. `date`
-| doc             | No       | Documentation scope, eg. `js`
+| term            | Yes      | The search term, eg. `stro`
+| doc             | No       | Documentation scope, eg. `rails`
 
 #### `devdocs-macos://newWindow`
 
