@@ -43,6 +43,26 @@
 			<key>CFBundleURLName</key>
 			<string>com.dteoh.devdocs-macos</string>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>http</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.dteoh.devdocs-macos</string>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.dteoh.devdocs-macos</string>
+		</dict>
 	</array>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
