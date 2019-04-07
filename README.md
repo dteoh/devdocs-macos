@@ -12,7 +12,7 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 - [x] Tabs
 - [x] Global shortcut (<kbd>Option+Space</kbd>)
 - [x] Automatic dark/light mode UI
-- [x] Protocol handler integration (handle `devdocs-macos://` URLs)
+- [x] Protocol handler integration (handle `devdocs-macos://`, `http://`, and `https://` URLs)
 
 ### Protocol handler integration
 
@@ -41,6 +41,17 @@ This is for launching a search query in a new window.
 #### `devdocs-macos://newWindow`
 
 This opens a new window.
+
+#### `http://` and `https://`
+
+DevDocs will open a new window only for URLs on the `devdocs.io` domain. For
+example:
+
+```
+$ osascript -e 'tell application "DevDocs" to open location "https://devdocs.io/#q=rails+stro"'
+```
+
+Other domains are ignored.
 
 ## Download & Install
 

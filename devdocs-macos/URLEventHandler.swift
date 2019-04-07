@@ -45,6 +45,9 @@ class URLEventHandler {
         case "newWindow":
             NSApp.activate(ignoringOtherApps: true)
             DocumentationWindows.shared.newWindow()
+        case "devdocs.io":
+            NSApp.activate(ignoringOtherApps: true)
+            DocumentationWindows.shared.newWindowFor(url: url!)
         default:
             return
         }
