@@ -180,6 +180,7 @@
 				TargetAttributes = {
 					06EAE7E821D0CB3D00F7C921 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -380,7 +381,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dteoh.devdocs-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -401,7 +402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dteoh.devdocs-macos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
