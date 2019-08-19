@@ -8,7 +8,7 @@ class Summoner {
 
     static var defaultShortcut: MASShortcut {
         let modifiers = NSEvent.ModifierFlags([.option])
-        return MASShortcut(keyCode: UInt(kVK_Space), modifierFlags: modifiers.rawValue)
+        return MASShortcut(keyCode: kVK_Space, modifierFlags: modifiers)
     }
 
     private init() {
