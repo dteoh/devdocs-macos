@@ -1,19 +1,14 @@
 (function() {
-    var original = document.addEventListener;
+    // Need to patch app.views.Mobile.detect internals to force desktop mode.
+    var original = window.matchMedia;
     var patcher = function() {
-        // Force desktop mode.
-        if (arguments[0] === 'DOMContentLoaded') {
-            app.views.Mobile.detect = function() {
-                return false;
-            };
-            document.addEventListener = original;
-        }
-        original.apply(null, arguments);
+        return { matches: false };
     };
-    document.addEventListener = patcher;
+    window.matchMedia = patcher;
 
     var afterInit = function() {
         if (typeof app.settings === 'object') {
+            window.matchMedia = original;
             window.webkit.messageHandlers.vcBus.postMessage({ type: 'afterInit' });
         } else {
             requestAnimationFrame(afterInit);
