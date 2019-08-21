@@ -1,6 +1,10 @@
 (function() {
     const DATA_TEXTCONTENT = 'data-dd-original-textcontent';
 
+    const rootSearchNode = function() {
+        return document.querySelector('main[role="main"]');
+    };
+
     // From:
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     const escapeRegExp = function(string) {
@@ -49,7 +53,7 @@
     };
 
     const reset = function() {
-        var mainNode = document.querySelector('main[role="main"]');
+        var mainNode = rootSearchNode();
         var treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_ELEMENT, {
             acceptNode: function(node) {
                 if (node.hasAttribute(DATA_TEXTCONTENT)) {
@@ -66,12 +70,10 @@
     };
 
     const search = function(term) {
-        var mainNode = document.querySelector('main[role="main"]');
+        var mainNode = rootSearchNode();
         var treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_TEXT, {
             acceptNode: function(node) {
                 var parent = node.parentNode;
-                // TODO switching docs doesn't invalidate the nodes.
-                // MutationObserver to track?
                 if (parent.tagName === 'MARK') {
                     return NodeFilter.FILTER_REJECT;
                 }
@@ -91,6 +93,20 @@
         }
         return mutateDOM(domMutations);
     };
+
+    // hacky, but seems to be the only reliable way to clear search results on
+    // page change.
+    (function() {
+        const observer = new MutationObserver(() => {
+            reset();
+        });
+        const titleEl = document.querySelector('title');
+        observer.observe(titleEl, {
+            childList: true,
+            characterData: true,
+            subtree: true,
+        });
+    })();
 
     window.search = function(term) {
         if (term === '' || typeof term !== 'string') {
