@@ -1,7 +1,24 @@
 var DATA_TEXTCONTENT = 'data-dd-original-textcontent';
 
+// From:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+var escapeRegExp = function(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+var mutateDOM = function(mutations) {
+    return new Promise(function(resolve, _reject) {
+        requestAnimationFrame(function() {
+            mutations.forEach(function(mut) {
+                mut();
+            });
+            resolve(true);
+        });
+    });
+};
+
 var hasSearchTerm = function(string, term) {
-    return string.indexOf(term) > -1;
+    return new RegExp(escapeRegExp(term), 'i').test(string);
 };
 
 var highlightTermInNode = function(node, term) {
@@ -13,6 +30,13 @@ var highlightTermInNode = function(node, term) {
             // Make backup of original textContent.
             node.setAttribute(DATA_TEXTCONTENT, content);
         }
+        const newContent = content.replace(
+            new RegExp(escapeRegExp(term), 'gi'),
+            function(match) {
+                return `<mark>${match}</mark>`;
+            }
+        );
+        node.innerHTML = newContent;
     };
 };
 
@@ -39,11 +63,7 @@ var reset = function() {
     while (treeWalker.nextNode()) {
         domMutations.push(restoreNodeTextContent(treeWalker.currentNode));
     }
-    requestAnimationFrame(function() {
-        domMutations.forEach(function(mut) {
-            mut();
-        });
-    });
+    return mutateDOM(domMutations);
 };
 
 var search = function(term) {
@@ -68,11 +88,8 @@ var search = function(term) {
     });
     var domMutations = [];
     while (treeWalker.nextNode()) {
-        domMutations.push(highlightTermInNode(treeWalker.currentNode.parentNode));
+        domMutations.push(highlightTermInNode(treeWalker.currentNode.parentNode, term));
     }
-    requestAnimationFrame(function() {
-        domMutations.forEach(function(mut) {
-            mut();
-        });
-    });
+    return mutateDOM(domMutations);
 };
+
