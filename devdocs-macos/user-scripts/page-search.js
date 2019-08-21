@@ -53,8 +53,8 @@
     };
 
     const reset = function() {
-        var mainNode = rootSearchNode();
-        var treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_ELEMENT, {
+        const mainNode = rootSearchNode();
+        const treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_ELEMENT, {
             acceptNode: function(node) {
                 if (node.hasAttribute(DATA_TEXTCONTENT)) {
                     return NodeFilter.FILTER_ACCEPT;
@@ -62,7 +62,7 @@
                 return NodeFilter.FILTER_SKIP;
             },
         });
-        var domMutations = [];
+        const domMutations = [];
         while (treeWalker.nextNode()) {
             domMutations.push(restoreNodeTextContent(treeWalker.currentNode));
         }
@@ -70,8 +70,8 @@
     };
 
     const search = function(term) {
-        var mainNode = rootSearchNode();
-        var treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_TEXT, {
+        const mainNode = rootSearchNode();
+        const treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_TEXT, {
             acceptNode: function(node) {
                 var parent = node.parentNode;
                 if (parent.tagName === 'MARK') {
@@ -87,7 +87,7 @@
                 return NodeFilter.FILTER_SKIP;
             },
         });
-        var domMutations = [];
+        const domMutations = [];
         while (treeWalker.nextNode()) {
             domMutations.push(highlightTermInNode(treeWalker.currentNode.parentNode, term));
         }
