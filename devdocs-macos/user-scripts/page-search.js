@@ -84,6 +84,10 @@
                 if (parent.tagName === 'MARK') {
                     return NodeFilter.FILTER_REJECT;
                 }
+                // The node is not visible on the page.
+                if (parent.offsetParent === null) {
+                    return NodeFilter.FILTER_REJECT;
+                }
                 let content = node.textContent;
                 if (parent.hasAttribute(DATA_TEXTCONTENT)) {
                     content = parent.getAttribute(DATA_TEXTCONTENT);
