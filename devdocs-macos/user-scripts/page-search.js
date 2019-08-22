@@ -1,6 +1,15 @@
 (function() {
     const DATA_TEXTCONTENT = 'data-dd-original-textcontent';
 
+    const flatten = function(xs) {
+        return xs.reduce((acc, x) => {
+            if (Array.isArray(x)) {
+                return acc.concat(flatten(x));
+            }
+            return acc.concat([x]);
+        }, []);
+    };
+
     const rootSearchNode = function() {
         return document.querySelector('main[role="main"]');
     };
@@ -14,10 +23,7 @@
     const mutateDOM = function(mutations) {
         return new Promise(function(resolve, _reject) {
             requestAnimationFrame(function() {
-                mutations.forEach(function(mut) {
-                    mut();
-                });
-                resolve(true);
+                resolve(mutations.map((mut) => mut()));
             });
         });
     };
@@ -40,6 +46,7 @@
                 (match) => `<mark>${match}</mark>`
             );
             node.innerHTML = newContent;
+            return Array.from(node.querySelectorAll('mark'));
         };
     };
 
@@ -55,7 +62,7 @@
     const reset = function() {
         const mainNode = rootSearchNode();
         const treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_ELEMENT, {
-            acceptNode: function(node) {
+            acceptNode(node) {
                 if (node.hasAttribute(DATA_TEXTCONTENT)) {
                     return NodeFilter.FILTER_ACCEPT;
                 }
@@ -72,7 +79,7 @@
     const search = function(term) {
         const mainNode = rootSearchNode();
         const treeWalker = document.createTreeWalker(mainNode, NodeFilter.SHOW_TEXT, {
-            acceptNode: function(node) {
+            acceptNode(node) {
                 var parent = node.parentNode;
                 if (parent.tagName === 'MARK') {
                     return NodeFilter.FILTER_REJECT;
@@ -94,11 +101,11 @@
         return mutateDOM(domMutations);
     };
 
-    // hacky, but seems to be the only reliable way to clear search results on
-    // page change.
+    // No reliable API to detect route transitions so that we can restore the
+    // original page state.
     (function() {
         const observer = new MutationObserver(() => {
-            reset();
+            window.resetSearch();
         });
         const titleEl = document.querySelector('title');
         observer.observe(titleEl, {
@@ -108,15 +115,79 @@
         });
     })();
 
-    window.search = function(term) {
-        if (term === '' || typeof term !== 'string') {
-            return;
+    // Install custom CSS
+    (function() {
+        const styleEl = document.createElement('style');
+        styleEl.setAttribute('type', 'text/css');
+        styleEl.textContent = `
+          mark.dd-macos-current {
+            font-size: 2em;
+          }
+        `;
+        document.querySelector('head').appendChild(styleEl);
+    })();
+
+    class SearchState {
+        constructor({ term, marks }) {
+            this.term = term;
+            this.marks = marks;
         }
-        return reset().then(() => search(term));
+
+        isCurrentTerm(term) {
+            return this.term === term;
+        }
+
+        async spotlightMark() {
+            if (this.marks.length === 0) {
+                return this;
+            }
+            const [next, ...rest] = this.marks;
+            const prev = this.marks[this.marks.length - 1];
+
+            await mutateDOM([() => {
+                prev.removeAttribute('class');
+                next.setAttribute('class', 'dd-macos-current');
+                // Use DevDocs own utilities.
+                $.scrollTo(next);
+            }]);
+
+            this.marks = rest.concat([next]);
+            return this;
+        }
+    }
+
+    let searchState;
+
+    // Public API
+
+    window.search = async function(term) {
+        if (typeof term !== 'string') {
+            return false;
+        }
+        const searchTerm = term.trim();
+        if (searchTerm === '') {
+            return false;
+        }
+        if (searchState && searchState.isCurrentTerm(searchTerm)) {
+            await searchState.spotlightMark();
+            return true;
+        }
+
+        await reset();
+        const insertedMarks = await search(searchTerm);
+        const ss = new SearchState({
+            term,
+            marks: flatten(insertedMarks),
+        });
+        await ss.spotlightMark();
+        searchState = ss;
+        return true;
     };
 
-    window.resetSearch = function() {
-        return reset();
+    window.resetSearch = async function() {
+        await reset();
+        searchState = null
+        return true;
     };
 })();
 
