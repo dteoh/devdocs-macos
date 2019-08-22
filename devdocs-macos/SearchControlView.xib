@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SearchControlViewController" customModule="DevDocs" customModuleProvider="target">
             <connections>
-                <outlet property="searchField" destination="Sob-7j-rmS" id="63N-X7-5xX"/>
                 <outlet property="view" destination="c22-O7-iKe" id="8CF-Bz-17c"/>
             </connections>
         </customObject>
@@ -22,16 +21,13 @@
                     <subviews>
                         <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sob-7j-rmS">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="19"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="200" id="Zms-uK-vwr"/>
-                            </constraints>
                             <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="p9W-s3-2vm">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
                             <connections>
-                                <action selector="performSearch:" target="-2" id="C7J-uG-P9I"/>
+                                <action selector="performSearch:" target="-2" id="i8X-0A-USs"/>
                             </connections>
                         </searchField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NIJ-J2-h3b">
@@ -44,7 +40,7 @@
                                 <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
-                                <action selector="dismissSearch:" target="-2" id="uF4-ir-bYe"/>
+                                <action selector="dismissSearch:" target="-2" id="qfV-XO-2d2"/>
                             </connections>
                         </button>
                     </subviews>

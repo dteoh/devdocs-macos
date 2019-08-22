@@ -15,6 +15,7 @@ class DocumentationViewController:
     }
 
     private var webView: WKWebView!
+    private var searchCVC: SearchControlViewController!
 
     @objc dynamic var documentTitle: String?
     @objc dynamic var documentURL: URL?
@@ -46,6 +47,11 @@ class DocumentationViewController:
             userContentController.addUserScript(pageObserver)
         }
 
+        if let pageSearchScript = readUserScript("page-search") {
+            let pageSearch = WKUserScript(source: pageSearchScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(pageSearch)
+        }
+
         if let uiSettingsScript = readUserScript("ui-settings") {
             let uiSettings = WKUserScript(source: uiSettingsScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
             userContentController.addUserScript(uiSettings)
@@ -67,9 +73,11 @@ class DocumentationViewController:
     }
 
     private func setupSearchControlView() {
-        let searchVC = SearchControlViewController()
+        // Need to store strong ref to the VC, or IBActions don't work
+        searchCVC = SearchControlViewController()
+        searchCVC.delegate = self
 
-        let searchView = searchVC.view
+        let searchView = searchCVC.view
         searchView.translatesAutoresizingMaskIntoConstraints = false
 
         webView.addSubview(searchView);
@@ -189,5 +197,17 @@ class DocumentationViewController:
         }
         self.documentURL = URL(string: location)
     }
+}
 
+// MARK:- SearchControlDelegate
+extension DocumentationViewController: SearchControlDelegate {
+    func search(term: String) {
+        let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": term])
+        let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
+        webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
+    }
+
+    func dismiss() {
+        webView.evaluateJavaScript("resetSearch();")
+    }
 }

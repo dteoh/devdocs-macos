@@ -1,7 +1,6 @@
 import Cocoa
 
 class SearchControlViewController: NSViewController {
-    @IBOutlet weak var searchField: NSSearchField?
     weak var delegate: SearchControlDelegate?
 
     init() {
@@ -19,8 +18,8 @@ class SearchControlViewController: NSViewController {
         view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
     }
 
-    @IBAction func performSearch(_ sender: Any) {
-        let searchTerm = (searchField?.stringValue ?? "")
+    @IBAction func performSearch(_ searchField: NSSearchField) {
+        let searchTerm = searchField.stringValue
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if (searchTerm.isEmpty) {
             return
