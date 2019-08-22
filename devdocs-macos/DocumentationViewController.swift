@@ -15,7 +15,7 @@ class DocumentationViewController:
     }
 
     private var webView: WKWebView!
-    private var searchCVC: SearchControlViewController!
+    private var searchCVC: SearchControlViewController?
 
     @objc dynamic var documentTitle: String?
     @objc dynamic var documentURL: URL?
@@ -74,22 +74,33 @@ class DocumentationViewController:
 
     private func setupSearchControlView() {
         // Need to store strong ref to the VC, or IBActions don't work
-        searchCVC = SearchControlViewController()
+        let searchCVC = SearchControlViewController()
         searchCVC.delegate = self
 
         let searchView = searchCVC.view
         searchView.translatesAutoresizingMaskIntoConstraints = false
+        searchView.isHidden = true
 
         webView.addSubview(searchView);
         NSLayoutConstraint.activate([
             searchView.widthAnchor.constraint(equalToConstant: 270),
             searchView.rightAnchor.constraint(equalTo: webView.rightAnchor)
         ])
+
+        self.searchCVC = searchCVC
     }
 
     private func loadWebsite() {
         let request = URLRequest(url: documentURL!)
         webView.load(request)
+    }
+
+    func showSearchControl() {
+        if viewerState != .ready {
+            return
+        }
+        guard let vc = searchCVC else { return }
+        vc.view.isHidden = false
     }
 
     // MARK:- WKUIDelegate
@@ -209,5 +220,7 @@ extension DocumentationViewController: SearchControlDelegate {
 
     func dismiss() {
         webView.evaluateJavaScript("resetSearch();")
+        guard let vc = searchCVC else { return }
+        vc.view.isHidden = true
     }
 }
