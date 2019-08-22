@@ -24,6 +24,7 @@ class DocumentationViewController:
         super.viewDidLoad()
         self.viewerState = .initializing
         setupWebView()
+        setupSearchControlView()
         loadWebsite()
     }
 
@@ -57,10 +58,25 @@ class DocumentationViewController:
         webView.wantsLayer = true
 
         view.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            webView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+
+    private func setupSearchControlView() {
+        let searchVC = SearchControlViewController()
+
+        let searchView = searchVC.view
+        searchView.translatesAutoresizingMaskIntoConstraints = false
+
+        webView.addSubview(searchView);
+        NSLayoutConstraint.activate([
+            searchView.widthAnchor.constraint(equalToConstant: 270),
+            searchView.rightAnchor.constraint(equalTo: webView.rightAnchor)
+        ])
     }
 
     private func loadWebsite() {
