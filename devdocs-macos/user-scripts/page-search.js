@@ -121,7 +121,24 @@
         styleEl.setAttribute('type', 'text/css');
         styleEl.textContent = `
           mark.dd-macos-current {
-            font-size: 2em;
+            border-width: 2px;
+            border-style: solid;
+            padding: 5px;
+          }
+
+          ._theme-default mark.dd-macos-current {
+            border-color: #000;
+          }
+
+          ._theme-dark mark {
+            background-color: #fff;
+            color: #000;
+          }
+
+          ._theme-dark mark.dd-macos-current {
+            background-color: #000;
+            border-color: #fff;
+            color: #fff;
           }
         `;
         document.querySelector('head').appendChild(styleEl);
@@ -164,10 +181,12 @@
         if (typeof term !== 'string') {
             return false;
         }
+
         const searchTerm = term.trim();
         if (searchTerm === '') {
             return false;
         }
+
         if (searchState && searchState.isCurrentTerm(searchTerm)) {
             await searchState.spotlightMark();
             return true;
