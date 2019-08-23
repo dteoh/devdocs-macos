@@ -23,4 +23,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showAppPreferences(sender: Any) {
         PreferencesWindowController.shared.showWindow(self)
     }
+
+    @IBAction func performFindAction(_ sender: Any) {
+        guard let window = NSApp.mainWindow else { return }
+        let dwc = window.windowController.map { wc in
+            wc as! DocumentationWindowController
+        }
+        dwc?.activateFind()
+    }
 }

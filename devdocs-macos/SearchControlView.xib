@@ -7,17 +7,18 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SearchControlViewController" customModule="DevDocs" customModuleProvider="target">
             <connections>
+                <outlet property="searchField" destination="Sob-7j-rmS" id="N7c-vj-yOn"/>
                 <outlet property="view" destination="c22-O7-iKe" id="8CF-Bz-17c"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="269" height="35"/>
+            <rect key="frame" x="0.0" y="0.0" width="269" height="36"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j60-Tm-mzj">
-                    <rect key="frame" x="8" y="8" width="253" height="19"/>
+                    <rect key="frame" x="8" y="8" width="253" height="20"/>
                     <subviews>
                         <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sob-7j-rmS">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="19"/>
@@ -27,17 +28,18 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
                             <connections>
-                                <action selector="performSearch:" target="-2" id="i8X-0A-USs"/>
+                                <action selector="performSearch:" target="-2" id="exz-1K-crg"/>
+                                <outlet property="delegate" destination="-2" id="uOj-0Y-Jyb"/>
                             </connections>
                         </searchField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NIJ-J2-h3b">
-                            <rect key="frame" x="208" y="1" width="45" height="17"/>
+                            <rect key="frame" x="208" y="1" width="45" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="7hz-st-MQx"/>
                             </constraints>
-                            <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HKN-5M-iIK">
+                            <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HKN-5M-iIK">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="smallSystem"/>
+                                <font key="font" metaFont="cellTitle"/>
                             </buttonCell>
                             <connections>
                                 <action selector="dismissSearch:" target="-2" id="qfV-XO-2d2"/>

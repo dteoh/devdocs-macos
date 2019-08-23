@@ -100,7 +100,7 @@ class DocumentationViewController:
             return
         }
         guard let vc = searchCVC else { return }
-        vc.view.isHidden = false
+        vc.activate()
     }
 
     // MARK:- WKUIDelegate
@@ -220,7 +220,5 @@ extension DocumentationViewController: SearchControlDelegate {
 
     func dismiss() {
         webView.evaluateJavaScript("resetSearch();")
-        guard let vc = searchCVC else { return }
-        vc.view.isHidden = true
     }
 }
