@@ -10,6 +10,13 @@
         }, []);
     };
 
+    const matchAll = function(regexp, str, fn) {
+        let matches;
+        while ((matches = regexp.exec(str)) !== null) {
+            fn(matches);
+        }
+    }
+
     const rootSearchNode = function() {
         return document.querySelector('main[role="main"]');
     };
@@ -18,6 +25,13 @@
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
     const escapeRegExp = function(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    }
+
+    const separate = function(string, substr) {
+        const startIdx = string.indexOf(substr);
+        const before = string.slice(0, startIdx);
+        const after = string.slice(startIdx + substr.length, string.length);
+        return [before, after];
     }
 
     const mutateDOM = function(mutations) {
@@ -41,11 +55,28 @@
                 // Make backup of original textContent.
                 node.setAttribute(DATA_TEXTCONTENT, content);
             }
-            const newContent = content.replace(
-                new RegExp(escapeRegExp(term), 'gi'),
-                (match) => `<mark>${match}</mark>`
-            );
-            node.innerHTML = newContent;
+
+            const fragment = document.createDocumentFragment();
+
+            let text = content;
+            matchAll(new RegExp(escapeRegExp(term), 'gi'), text, (match) => {
+                const [before, after] = separate(text, match[0]);
+                if (before.length > 0) {
+                    fragment.appendChild(document.createTextNode(before));
+                }
+
+                const mark = document.createElement('mark');
+                mark.textContent = match[0];
+                fragment.appendChild(mark);
+
+                text = after;
+            });
+            if (text.length > 0) {
+                fragment.appendChild(document.createTextNode(text));
+            }
+
+            node.innerHTML = '';
+            node.appendChild(fragment);
             return Array.from(node.querySelectorAll('mark'));
         };
     };
