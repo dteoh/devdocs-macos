@@ -77,6 +77,9 @@
 
             node.innerHTML = '';
             node.appendChild(fragment);
+            // FIXME
+            // Not sure sure why, but this is also returning nodes not
+            // attached to the document tree.
             return Array.from(node.querySelectorAll('mark'));
         };
     };
@@ -182,7 +185,11 @@
     class SearchState {
         constructor({ term, marks }) {
             this.term = term;
-            this.marks = marks;
+            // FIXME
+            // For some reason, we are getting nodes that are not attached
+            // to the document tree. Work around this issue by filtering out
+            // nodes not attached to the tree.
+            this.marks = marks.filter(mark => document.body.contains(mark));
         }
 
         isCurrentTerm(term) {
