@@ -1,5 +1,5 @@
 (function() {
-    var observer = new MutationObserver(function(mutations) {
+    const observer = new MutationObserver((mutations) => {
         window.webkit.messageHandlers.vcBus.postMessage({
             type: 'titleNotification',
             args: {
@@ -14,7 +14,7 @@
         });
     });
 
-    var titleEl = document.querySelector('title');
+    const titleEl = document.querySelector('title');
     observer.observe(titleEl, {
         childList: true,
         characterData: true,
