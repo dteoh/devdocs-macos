@@ -18,3 +18,4 @@ const useNativeScrollbars = function(enable) {
         sp.toggleLayout('_native-scrollbars', enable);
     });
 };
+
