@@ -15,6 +15,7 @@ class DocumentationViewController:
     }
 
     private var webView: WKWebView!
+    private var searchCVC: SearchControlViewController?
 
     @objc dynamic var documentTitle: String?
     @objc dynamic var documentURL: URL?
@@ -24,6 +25,7 @@ class DocumentationViewController:
         super.viewDidLoad()
         self.viewerState = .initializing
         setupWebView()
+        setupSearchControlView()
         loadWebsite()
     }
 
@@ -45,6 +47,11 @@ class DocumentationViewController:
             userContentController.addUserScript(pageObserver)
         }
 
+        if let pageSearchScript = readUserScript("page-search") {
+            let pageSearch = WKUserScript(source: pageSearchScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            userContentController.addUserScript(pageSearch)
+        }
+
         if let uiSettingsScript = readUserScript("ui-settings") {
             let uiSettings = WKUserScript(source: uiSettingsScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
             userContentController.addUserScript(uiSettings)
@@ -57,15 +64,48 @@ class DocumentationViewController:
         webView.wantsLayer = true
 
         view.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            webView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+
+    private func setupSearchControlView() {
+        // Need to store strong ref to the VC, or IBActions don't work
+        let searchCVC = SearchControlViewController()
+        searchCVC.delegate = self
+
+        let searchView = searchCVC.view
+        searchView.translatesAutoresizingMaskIntoConstraints = false
+        searchView.isHidden = true
+
+        webView.addSubview(searchView);
+        NSLayoutConstraint.activate([
+            searchView.widthAnchor.constraint(equalToConstant: 270),
+            searchView.rightAnchor.constraint(equalTo: webView.rightAnchor)
+        ])
+
+        self.searchCVC = searchCVC
     }
 
     private func loadWebsite() {
         let request = URLRequest(url: documentURL!)
         webView.load(request)
+    }
+
+    func showSearchControl() {
+        if viewerState != .ready {
+            return
+        }
+        guard let vc = searchCVC else { return }
+        vc.activate()
+    }
+
+    func hideSearchControl() {
+        guard let vc = searchCVC else { return }
+        vc.dismissSearch(self)
     }
 
     // MARK:- WKUIDelegate
@@ -172,6 +212,19 @@ class DocumentationViewController:
             return
         }
         self.documentURL = URL(string: location)
+        hideSearchControl()
+    }
+}
+
+// MARK:- SearchControlDelegate
+extension DocumentationViewController: SearchControlDelegate {
+    func search(term: String) {
+        let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": term])
+        let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
+        webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
     }
 
+    func dismiss() {
+        webView.evaluateJavaScript("resetSearch();")
+    }
 }

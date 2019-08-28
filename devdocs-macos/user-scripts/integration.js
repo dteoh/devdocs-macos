@@ -7,7 +7,7 @@
     window.matchMedia = patcher;
 
     var afterInit = function() {
-        if (typeof app.settings === 'object') {
+        if (window.app && window.app.settings) {
             window.matchMedia = original;
             window.webkit.messageHandlers.vcBus.postMessage({ type: 'afterInit' });
         } else {

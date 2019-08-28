@@ -28,6 +28,11 @@ class DocumentationWindowController: NSWindowController {
         observeEffectiveAppearance()
     }
 
+    func activateFind() {
+        guard let dvc = documentationViewController else { return }
+        dvc.showSearchControl()
+    }
+
     private func observeViewerState() {
         guard let dvc = documentationViewController else { return }
         observations.insert(
