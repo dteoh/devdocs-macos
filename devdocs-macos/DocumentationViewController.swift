@@ -103,6 +103,11 @@ class DocumentationViewController:
         vc.activate()
     }
 
+    func hideSearchControl() {
+        guard let vc = searchCVC else { return }
+        vc.dismissSearch(self)
+    }
+
     // MARK:- WKUIDelegate
 
     func webView(_ webView: WKWebView,
@@ -207,6 +212,7 @@ class DocumentationViewController:
             return
         }
         self.documentURL = URL(string: location)
+        hideSearchControl()
     }
 }
 
