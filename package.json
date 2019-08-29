@@ -1,0 +1,15 @@
+{
+  "name": "devdocs-macos",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dteoh/devdocs-macos",
+  "author": "DevDocs for macOS developers",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "lint": "standard ./devdocs-macos/user-scripts/**/*.js",
+    "fix": "standard --fix ./devdocs-macos/user-scripts/**/*.js"
+  },
+  "devDependencies": {
+    "standard": "^14.0.2"
+  }
+}
