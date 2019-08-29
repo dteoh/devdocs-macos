@@ -41,13 +41,13 @@ class URLEventHandler {
             }
 
             NSApp.activate(ignoringOtherApps: true)
-            DocumentationWindows.shared.newWindowFor(url: searchURL)
+            DocumentationWindows.shared.newWindow(forURL: searchURL)
         case "newWindow":
             NSApp.activate(ignoringOtherApps: true)
             DocumentationWindows.shared.newWindow()
         case "devdocs.io":
             NSApp.activate(ignoringOtherApps: true)
-            DocumentationWindows.shared.newWindowFor(url: url!)
+            DocumentationWindows.shared.newWindow(forURL: url!)
         default:
             return
         }

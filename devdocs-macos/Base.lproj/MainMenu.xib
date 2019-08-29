@@ -29,7 +29,7 @@
                             <menuItem title="Preferences…" id="BOF-NM-1cW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showAppPreferencesWithSender:" target="Voe-Tx-rLC" id="LDP-dv-TTw"/>
+                                    <action selector="showAppPreferences:" target="Voe-Tx-rLC" id="WEE-am-D7X"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -70,7 +70,7 @@
                         <items>
                             <menuItem title="New Tab" keyEquivalent="t" id="Was-JA-tGl">
                                 <connections>
-                                    <action selector="newTabWithSender:" target="Voe-Tx-rLC" id="Swf-eT-1ST"/>
+                                    <action selector="newTab:" target="Voe-Tx-rLC" id="aJ7-hj-He2"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>

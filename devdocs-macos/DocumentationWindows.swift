@@ -1,6 +1,6 @@
 import Cocoa
 
-class DocumentationWindows: NSObject, NSWindowDelegate {
+class DocumentationWindows: NSObject {
     private var windowControllers: Set<DocumentationWindowController>
 
     static let shared = DocumentationWindows()
@@ -10,11 +10,11 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
     }
 
     func newWindow() {
-        newWindowFor(documentation: Documentation.init())
+        newWindow(forDoc: Documentation.init())
     }
 
-    func newWindowFor(url: URL) {
-        newWindowFor(documentation: Documentation.init(withURL: url))
+    func newWindow(forURL url: URL) {
+        newWindow(forDoc: Documentation.init(withURL: url))
     }
 
     func newWindowIfNoWindow() {
@@ -23,15 +23,7 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
         }
     }
 
-    func windowWillClose(_ notification: Notification) {
-        guard let window = notification.object as! NSWindow? else { return }
-        guard let dwc = window.windowController as! DocumentationWindowController? else {
-            return
-        }
-        windowControllers.remove(dwc)
-    }
-
-    private func newWindowFor(documentation: Documentation) {
+    private func newWindow(forDoc documentation: Documentation) {
         let dwc = DocumentationWindowController.init(window: nil)
         dwc.documentation = documentation
         dwc.window?.delegate = self
@@ -60,11 +52,21 @@ class DocumentationWindows: NSObject, NSWindowDelegate {
                     return false
                 }
             }.forEach { url in
-                newWindowFor(url: url)
+                newWindow(forURL: url)
             }
         } else {
             newWindow()
         }
     }
+}
 
+// MARK:- NSWindowDelegate
+extension DocumentationWindows: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        guard let window = notification.object as! NSWindow? else { return }
+        guard let dwc = window.windowController as! DocumentationWindowController? else {
+            return
+        }
+        windowControllers.remove(dwc)
+    }
 }

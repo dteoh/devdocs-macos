@@ -16,11 +16,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DocumentationWindows.shared.persist()
     }
 
-    @IBAction func newTab(sender: Any) {
+    @IBAction func newTab(_ sender: Any) {
         DocumentationWindows.shared.newWindow()
     }
 
-    @IBAction func showAppPreferences(sender: Any) {
+    @IBAction func showAppPreferences(_ sender: Any) {
         PreferencesWindowController.shared.showWindow(self)
     }
 

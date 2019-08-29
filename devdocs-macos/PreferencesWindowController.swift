@@ -19,7 +19,7 @@ class PreferencesWindowController: NSWindowController {
         }
     }
 
-    @IBAction func restoreDefaults(sender: Any) {
+    @IBAction func restoreDefaults(_ sender: Any) {
         if let recorderView = masShortcutRecorderView {
             recorderView.shortcutValue = Summoner.defaultShortcut
         }

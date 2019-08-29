@@ -92,5 +92,4 @@ class DocumentationWindowController: NSWindowController {
             }
         )
     }
-
 }

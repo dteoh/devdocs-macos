@@ -3,9 +3,7 @@ import WebKit
 
 class DocumentationViewController:
     NSViewController,
-    WKNavigationDelegate,
-    WKUIDelegate,
-    WKScriptMessageHandler
+    WKNavigationDelegate
 {
 
     @objc enum ViewerState: Int {
@@ -29,13 +27,20 @@ class DocumentationViewController:
         loadWebsite()
     }
 
+    override func viewDidDisappear() {
+        let ucc = webView.configuration.userContentController
+        ucc.removeScriptMessageHandler(forName: "vcBus")
+        ucc.removeAllUserScripts()
+        super.viewDidDisappear()
+    }
+
     private func setupWebView() {
         let config = WKWebViewConfiguration()
 
         let userContentController = WKUserContentController()
         config.userContentController = userContentController;
 
-        userContentController.add(self, name: "vcBus");
+        userContentController.add(WeakWKScriptMessageHandler.init(self), name: "vcBus");
 
         if let integrationScript = readUserScript("integration") {
             let integration = WKUserScript(source: integrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
@@ -95,6 +100,8 @@ class DocumentationViewController:
         webView.load(request)
     }
 
+    // MARK:- Page search
+
     func showSearchControl() {
         if viewerState != .ready {
             return
@@ -106,60 +113,6 @@ class DocumentationViewController:
     func hideSearchControl() {
         guard let vc = searchCVC else { return }
         vc.dismissSearch(self)
-    }
-
-    // MARK:- WKUIDelegate
-
-    func webView(_ webView: WKWebView,
-                 createWebViewWith configuration: WKWebViewConfiguration,
-                 for navigationAction: WKNavigationAction,
-                 windowFeatures: WKWindowFeatures) -> WKWebView? {
-        guard let requestURL = navigationAction.request.url else {
-            return nil
-        }
-
-        if let host = requestURL.host, host == "devdocs.io" {
-            DocumentationWindows.shared.newWindowFor(url: requestURL)
-            return nil
-        }
-
-        if let scheme = requestURL.scheme {
-            switch scheme {
-            case "http", "https", "mailto":
-                NSWorkspace.shared.open(requestURL)
-            default:
-                break;
-            }
-        }
-
-        return nil
-    }
-
-    // MARK:- WKScriptMessageHandler
-
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard let msg = message.body as? [AnyHashable: Any] else {
-            return
-        }
-        guard let type = msg["type"] as? String else {
-            return
-        }
-        switch type {
-        case "afterInit":
-            handleAfterInit()
-        case "titleNotification":
-            guard let args = msg["args"] as? [AnyHashable: Any] else {
-                return
-            }
-            handleTitleNotification(args)
-        case "locationNotification":
-            guard let args = msg["args"] as? [AnyHashable: Any] else {
-                return
-            }
-            handleLocationNotification(args)
-        default:
-            return
-        }
     }
 
     // MARK:- JS integration
@@ -213,6 +166,63 @@ class DocumentationViewController:
         }
         self.documentURL = URL(string: location)
         hideSearchControl()
+    }
+}
+
+// MARK:- WKUIDelegate
+extension DocumentationViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction,
+                 windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let requestURL = navigationAction.request.url else {
+            return nil
+        }
+
+        if let host = requestURL.host, host == "devdocs.io" {
+            DocumentationWindows.shared.newWindow(forURL: requestURL)
+            return nil
+        }
+
+        if let scheme = requestURL.scheme {
+            switch scheme {
+            case "http", "https", "mailto":
+                NSWorkspace.shared.open(requestURL)
+            default:
+                break;
+            }
+        }
+
+        return nil
+    }
+}
+
+// MARK:- WKScriptMessageHandler
+extension DocumentationViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController,
+                               didReceive message: WKScriptMessage) {
+        guard let msg = message.body as? [AnyHashable: Any] else {
+            return
+        }
+        guard let type = msg["type"] as? String else {
+            return
+        }
+        switch type {
+        case "afterInit":
+            handleAfterInit()
+        case "titleNotification":
+            guard let args = msg["args"] as? [AnyHashable: Any] else {
+                return
+            }
+            handleTitleNotification(args)
+        case "locationNotification":
+            guard let args = msg["args"] as? [AnyHashable: Any] else {
+                return
+            }
+            handleLocationNotification(args)
+        default:
+            return
+        }
     }
 }
 
