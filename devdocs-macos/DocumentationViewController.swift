@@ -180,7 +180,7 @@ extension DocumentationViewController: WKUIDelegate {
         }
 
         if let host = requestURL.host, host == "devdocs.io" {
-            DocumentationWindows.shared.newWindowFor(url: requestURL)
+            DocumentationWindows.shared.newWindow(forURL: requestURL)
             return nil
         }
 
