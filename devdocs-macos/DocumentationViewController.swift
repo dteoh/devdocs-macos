@@ -27,13 +27,20 @@ class DocumentationViewController:
         loadWebsite()
     }
 
+    override func viewDidDisappear() {
+        let ucc = webView.configuration.userContentController
+        ucc.removeScriptMessageHandler(forName: "vcBus")
+        ucc.removeAllUserScripts()
+        super.viewDidDisappear()
+    }
+
     private func setupWebView() {
         let config = WKWebViewConfiguration()
 
         let userContentController = WKUserContentController()
         config.userContentController = userContentController;
 
-        userContentController.add(self, name: "vcBus");
+        userContentController.add(WeakWKScriptMessageHandler.init(self), name: "vcBus");
 
         if let integrationScript = readUserScript("integration") {
             let integration = WKUserScript(source: integrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
