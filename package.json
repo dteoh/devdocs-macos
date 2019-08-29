@@ -6,8 +6,8 @@
   "author": "DevDocs for macOS developers",
   "license": "GPL-3.0-only",
   "scripts": {
-    "lint": "standard ./devdocs-macos/user-scripts/**/*.js",
-    "fix": "standard --fix ./devdocs-macos/user-scripts/**/*.js"
+    "lint": "standard \"devdocs-macos/user-scripts/**/*.js\"",
+    "fix": "standard --fix \"devdocs-macos/user-scripts/**/*.js\""
   },
   "devDependencies": {
     "standard": "^14.0.2"
