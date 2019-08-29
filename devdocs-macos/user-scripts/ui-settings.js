@@ -1,4 +1,6 @@
-const useDarkMode = function (enable) {
+/* global app */
+
+window.useDarkMode = function (enable) {
   requestAnimationFrame(() => {
     const inDarkMode = !!app.settings.get('dark')
     if (enable && inDarkMode) {
@@ -12,7 +14,7 @@ const useDarkMode = function (enable) {
   })
 }
 
-const useNativeScrollbars = function (enable) {
+window.useNativeScrollbars = function (enable) {
   requestAnimationFrame(() => {
     const sp = new app.views.SettingsPage()
     sp.toggleLayout('_native-scrollbars', enable)

@@ -1,3 +1,4 @@
+/* global $ */
 (function () {
   const observer = new MutationObserver((mutations) => {
     window.webkit.messageHandlers.vcBus.postMessage({

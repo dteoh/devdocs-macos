@@ -1,3 +1,4 @@
+/* global $ */
 (function () {
   const DATA_TEXTCONTENT = 'data-dd-original-textcontent'
 
@@ -35,7 +36,7 @@
   }
 
   const mutateDOM = function (mutations) {
-    return new Promise(function (resolve, _reject) {
+    return new Promise(function (resolve, reject) {
       requestAnimationFrame(function () {
         resolve(mutations.map((mut) => mut()))
       })
