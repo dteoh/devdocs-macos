@@ -31,6 +31,8 @@ class DocumentationViewController:
         let ucc = webView.configuration.userContentController
         ucc.removeScriptMessageHandler(forName: "vcBus")
         ucc.removeAllUserScripts()
+        webView.uiDelegate = nil
+        
         super.viewDidDisappear()
     }
 
