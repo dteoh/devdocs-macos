@@ -31,8 +31,6 @@ class DocumentationViewController:
         let ucc = webView.configuration.userContentController
         ucc.removeScriptMessageHandler(forName: "vcBus")
         ucc.removeAllUserScripts()
-        webView.uiDelegate = nil
-        
         super.viewDidDisappear()
     }
 
@@ -42,7 +40,7 @@ class DocumentationViewController:
         let userContentController = WKUserContentController()
         config.userContentController = userContentController;
 
-        userContentController.add(WeakWKScriptMessageHandler.init(self), name: "vcBus");
+        userContentController.add(self, name: "vcBus");
 
         if let integrationScript = readUserScript("integration") {
             let integration = WKUserScript(source: integrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
