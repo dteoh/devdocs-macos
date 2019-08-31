@@ -36,14 +36,14 @@ class DocumentationWindowController: NSWindowController {
     private func observeViewerState() {
         guard let dvc = documentationViewController else { return }
         observations.insert(
-            dvc.observe(\DocumentationViewController.viewerState) { (dvc, _) in
+            dvc.observe(\DocumentationViewController.viewerState) { [weak self] (dvc, _) in
                 if dvc.viewerState != .ready {
                     return
                 }
 
                 dvc.useNativeScrollbars(true)
 
-                guard let window = self.window else { return }
+                guard let window = self?.window else { return }
                 switch window.effectiveAppearance.name {
                 case .aqua:
                     dvc.useDarkMode(false)
@@ -59,8 +59,8 @@ class DocumentationWindowController: NSWindowController {
     private func observeDocumentTitle() {
         guard let dvc = documentationViewController else { return }
         observations.insert(
-            dvc.observe(\DocumentationViewController.documentTitle) { (dvc, _) in
-                self.window?.title = dvc.documentTitle ?? "DevDocs"
+            dvc.observe(\DocumentationViewController.documentTitle) { [weak self] (dvc, _) in
+                self?.window?.title = dvc.documentTitle ?? "DevDocs"
             }
         )
     }
@@ -68,8 +68,8 @@ class DocumentationWindowController: NSWindowController {
     private func observeDocumentURL() {
         guard let dvc = documentationViewController else { return }
         observations.insert(
-            dvc.observe(\DocumentationViewController.documentURL) { (dvc, _) in
-                self.documentation.url = dvc.documentURL
+            dvc.observe(\DocumentationViewController.documentURL) { [weak self] (dvc, _) in
+                self?.documentation.url = dvc.documentURL
             }
         )
     }
@@ -77,8 +77,8 @@ class DocumentationWindowController: NSWindowController {
     private func observeEffectiveAppearance() {
         guard let window = self.window else { return }
         observations.insert(
-            window.observe(\NSWindow.effectiveAppearance) { (win, _) in
-                guard let dvc = self.documentationViewController else {
+            window.observe(\NSWindow.effectiveAppearance) { [weak self] (win, _) in
+                guard let dvc = self?.documentationViewController else {
                     return
                 }
                 switch window.effectiveAppearance.name {

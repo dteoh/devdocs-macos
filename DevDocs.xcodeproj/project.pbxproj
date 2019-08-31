@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0680E1D12317576100CD5BB4 /* WeakWKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0680E1D02317576100CD5BB4 /* WeakWKScriptMessageHandler.swift */; };
 		06996D2D223DDBEB001507AD /* Summoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06996D2C223DDBEB001507AD /* Summoner.swift */; };
 		06996D36223DEDA3001507AD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; };
 		06996D37223DEDA3001507AD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06996D35223DEDA3001507AD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,7 +59,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0680E1D02317576100CD5BB4 /* WeakWKScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakWKScriptMessageHandler.swift; sourceTree = "<group>"; };
 		06996D2C223DDBEB001507AD /* Summoner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summoner.swift; sourceTree = "<group>"; };
 		06996D35223DEDA3001507AD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 		06996D38223DEDC8001507AD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				06B5A73A21D36680007823B2 /* Storage.swift */,
 				06996D2C223DDBEB001507AD /* Summoner.swift */,
 				06CAA896223E6ACB00B296AC /* URLEventHandler.swift */,
-				0680E1D02317576100CD5BB4 /* WeakWKScriptMessageHandler.swift */,
 				06B5A71921D2013D007823B2 /* user-scripts */,
 			);
 			path = "devdocs-macos";
@@ -241,7 +238,6 @@
 				06B5A73321D35552007823B2 /* Documentation.swift in Sources */,
 				06EAE7FD21D0CE3E00F7C921 /* DocumentationWindowController.swift in Sources */,
 				06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */,
-				0680E1D12317576100CD5BB4 /* WeakWKScriptMessageHandler.swift in Sources */,
 				06B5A73B21D36680007823B2 /* Storage.swift in Sources */,
 				06CAA897223E6ACB00B296AC /* URLEventHandler.swift in Sources */,
 			);
