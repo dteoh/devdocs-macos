@@ -10,10 +10,7 @@ public extension Notification.Name {
         rawValue: "DocumentationViewControllerViewerStateDidChangeNotification")
 }
 
-class DocumentationViewController:
-    NSViewController,
-    WKNavigationDelegate
-{
+class DocumentationViewController: NSViewController {
 
     enum ViewerState {
         case blank
@@ -68,20 +65,7 @@ class DocumentationViewController:
             userContentController.addUserScript(integration)
         }
 
-        if let pageObserverScript = readUserScript("page-observer") {
-            let pageObserver = WKUserScript(source: pageObserverScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            userContentController.addUserScript(pageObserver)
-        }
-
-        if let pageSearchScript = readUserScript("page-search") {
-            let pageSearch = WKUserScript(source: pageSearchScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            userContentController.addUserScript(pageSearch)
-        }
-
-        if let uiSettingsScript = readUserScript("ui-settings") {
-            let uiSettings = WKUserScript(source: uiSettingsScript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            userContentController.addUserScript(uiSettings)
-        }
+        addFeatureScripts(userContentController)
 
         webView = WKWebView.init(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,6 +138,29 @@ class DocumentationViewController:
         }
     }
 
+    private func addFeatureScripts(_ controller: WKUserContentController) {
+        if let pageObserverScript = readUserScript("page-observer") {
+            let pageObserver = WKUserScript(source: pageObserverScript,
+                                            injectionTime: .atDocumentEnd,
+                                            forMainFrameOnly: true)
+            controller.addUserScript(pageObserver)
+        }
+
+        if let pageSearchScript = readUserScript("page-search") {
+            let pageSearch = WKUserScript(source: pageSearchScript,
+                                          injectionTime: .atDocumentEnd,
+                                          forMainFrameOnly: true)
+            controller.addUserScript(pageSearch)
+        }
+
+        if let uiSettingsScript = readUserScript("ui-settings") {
+            let uiSettings = WKUserScript(source: uiSettingsScript,
+                                          injectionTime: .atDocumentEnd,
+                                          forMainFrameOnly: true)
+            controller.addUserScript(uiSettings)
+        }
+    }
+
     private func readUserScript(_ name: String) -> String? {
         guard let scriptPath = Bundle.main.path(forResource: name, ofType: "js", inDirectory: "user-scripts") else {
             return nil
@@ -215,6 +222,14 @@ extension DocumentationViewController: WKUIDelegate {
         }
 
         return nil
+    }
+}
+
+// MARK:- WKNavigationDelegate
+extension DocumentationViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let ucc = webView.configuration.userContentController
+        addFeatureScripts(ucc)
     }
 }
 
