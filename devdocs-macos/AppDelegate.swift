@@ -1,5 +1,10 @@
 import AppKit
 
+public extension Notification.Name {
+    static let MenuFindAction = Notification.Name(
+        rawValue: "AppDelegateMenuFindActionNotification")
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
@@ -25,10 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func performFindAction(_ sender: Any) {
-        guard let window = NSApp.mainWindow else { return }
-        let dwc = window.windowController.map { wc in
-            wc as! DocumentationWindowController
-        }
-        dwc?.activateFind()
+        NotificationCenter.default.post(name: .MenuFindAction, object: nil)
     }
 }

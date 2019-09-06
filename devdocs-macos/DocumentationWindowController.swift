@@ -40,12 +40,14 @@ class DocumentationWindowController: NSWindowController {
                                                selector: #selector(observeDocumentURL),
                                                name: .DocumentURLDidChange,
                                                object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeMenuFindAction),
+                                               name: .MenuFindAction,
+                                               object: nil)
     }
 
-    func activateFind() {
-        guard let dvc = documentationViewController else { return }
-        dvc.showSearchControl()
-    }
+    // MARK:- NotificationCenter observers
 
     @objc private func observeViewerState() {
         guard let dvc = documentationViewController else { return }
@@ -76,6 +78,18 @@ class DocumentationWindowController: NSWindowController {
         guard let dvc = documentationViewController else { return }
         self.documentation.url = dvc.documentURL
     }
+
+    @objc private func observeMenuFindAction() {
+        guard let window = self.window else { return }
+        if !window.isKeyWindow {
+            return
+        }
+
+        guard let dvc = documentationViewController else { return }
+        dvc.showSearchControl()
+    }
+
+    // MARK:- KVO observers
 
     private func observeEffectiveAppearance() {
         guard let window = self.window else { return }
