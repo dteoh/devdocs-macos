@@ -1,4 +1,4 @@
-import Cocoa
+import Foundation
 
 class Documentation: NSObject {
     var url: URL!

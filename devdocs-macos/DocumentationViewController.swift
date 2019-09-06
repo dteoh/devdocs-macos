@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 import WebKit
 
 public extension Notification.Name {

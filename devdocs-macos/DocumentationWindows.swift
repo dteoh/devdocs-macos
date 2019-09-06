@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 
 class DocumentationWindows: NSObject {
     private var windowControllers: Set<DocumentationWindowController>
