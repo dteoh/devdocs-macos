@@ -22,10 +22,24 @@ class DocumentationWindowController: NSWindowController {
     }
 
     override func windowDidLoad() {
-        observeViewerState()
-        observeDocumentTitle()
-        observeDocumentURL()
         observeEffectiveAppearance()
+
+        guard let dvc = documentationViewController else { return }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeViewerState),
+                                               name: .DocumentViewerStateDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeDocumentTitle),
+                                               name: .DocumentTitleDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeDocumentURL),
+                                               name: .DocumentURLDidChange,
+                                               object: dvc)
     }
 
     func activateFind() {
@@ -33,45 +47,34 @@ class DocumentationWindowController: NSWindowController {
         dvc.showSearchControl()
     }
 
-    private func observeViewerState() {
+    @objc private func observeViewerState() {
         guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.viewerState) { [weak self] (dvc, _) in
-                if dvc.viewerState != .ready {
-                    return
-                }
 
-                dvc.useNativeScrollbars(true)
+        if dvc.viewerState != .ready {
+            return
+        }
 
-                guard let window = self?.window else { return }
-                switch window.effectiveAppearance.name {
-                case .aqua:
-                    dvc.useDarkMode(false)
-                case .darkAqua:
-                    dvc.useDarkMode(true)
-                default:
-                    break;
-                }
-            }
-        )
+        dvc.useNativeScrollbars(true)
+
+        guard let window = self.window else { return }
+        switch window.effectiveAppearance.name {
+        case .aqua:
+            dvc.useDarkMode(false)
+        case .darkAqua:
+            dvc.useDarkMode(true)
+        default:
+            break;
+        }
     }
 
-    private func observeDocumentTitle() {
+    @objc private func observeDocumentTitle() {
         guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.documentTitle) { [weak self] (dvc, _) in
-                self?.window?.title = dvc.documentTitle ?? "DevDocs"
-            }
-        )
+        self.window?.title = dvc.documentTitle ?? "DevDocs"
     }
 
-    private func observeDocumentURL() {
+    @objc private func observeDocumentURL() {
         guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.documentURL) { [weak self] (dvc, _) in
-                self?.documentation.url = dvc.documentURL
-            }
-        )
+        self.documentation.url = dvc.documentURL
     }
 
     private func observeEffectiveAppearance() {
