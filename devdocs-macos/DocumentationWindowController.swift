@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 import WebKit
 
 class DocumentationWindowController: NSWindowController {
@@ -22,57 +22,74 @@ class DocumentationWindowController: NSWindowController {
     }
 
     override func windowDidLoad() {
-        observeViewerState()
-        observeDocumentTitle()
-        observeDocumentURL()
         observeEffectiveAppearance()
+
+        guard let dvc = documentationViewController else { return }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeViewerState),
+                                               name: .DocumentViewerStateDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeDocumentTitle),
+                                               name: .DocumentTitleDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeDocumentURL),
+                                               name: .DocumentURLDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeMenuFindAction),
+                                               name: .MenuFindAction,
+                                               object: nil)
     }
 
-    func activateFind() {
+    // MARK:- NotificationCenter observers
+
+    @objc private func observeViewerState() {
+        guard let dvc = documentationViewController else { return }
+
+        if dvc.viewerState != .ready {
+            return
+        }
+
+        dvc.useNativeScrollbars(true)
+
+        guard let window = self.window else { return }
+        switch window.effectiveAppearance.name {
+        case .aqua:
+            dvc.useDarkMode(false)
+        case .darkAqua:
+            dvc.useDarkMode(true)
+        default:
+            break;
+        }
+    }
+
+    @objc private func observeDocumentTitle() {
+        guard let dvc = documentationViewController else { return }
+        self.window?.title = dvc.documentTitle ?? "DevDocs"
+    }
+
+    @objc private func observeDocumentURL() {
+        guard let dvc = documentationViewController else { return }
+        self.documentation.url = dvc.documentURL
+    }
+
+    @objc private func observeMenuFindAction() {
+        guard let window = self.window else { return }
+        if !window.isKeyWindow {
+            return
+        }
+
         guard let dvc = documentationViewController else { return }
         dvc.showSearchControl()
     }
 
-    private func observeViewerState() {
-        guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.viewerState) { [weak self] (dvc, _) in
-                if dvc.viewerState != .ready {
-                    return
-                }
-
-                dvc.useNativeScrollbars(true)
-
-                guard let window = self?.window else { return }
-                switch window.effectiveAppearance.name {
-                case .aqua:
-                    dvc.useDarkMode(false)
-                case .darkAqua:
-                    dvc.useDarkMode(true)
-                default:
-                    break;
-                }
-            }
-        )
-    }
-
-    private func observeDocumentTitle() {
-        guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.documentTitle) { [weak self] (dvc, _) in
-                self?.window?.title = dvc.documentTitle ?? "DevDocs"
-            }
-        )
-    }
-
-    private func observeDocumentURL() {
-        guard let dvc = documentationViewController else { return }
-        observations.insert(
-            dvc.observe(\DocumentationViewController.documentURL) { [weak self] (dvc, _) in
-                self?.documentation.url = dvc.documentURL
-            }
-        )
-    }
+    // MARK:- KVO observers
 
     private func observeEffectiveAppearance() {
         guard let window = self.window else { return }

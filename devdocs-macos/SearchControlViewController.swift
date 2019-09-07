@@ -1,4 +1,4 @@
-import Cocoa
+import AppKit
 
 class SearchControlViewController: NSViewController {
     weak var delegate: SearchControlDelegate?

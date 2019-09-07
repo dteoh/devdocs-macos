@@ -1,12 +1,21 @@
-import Cocoa
+import AppKit
 import WebKit
+
+public extension Notification.Name {
+    static let DocumentTitleDidChange = Notification.Name(
+        rawValue: "DocumentationViewControllerDocumentTitleDidChangeNotification")
+    static let DocumentURLDidChange = Notification.Name(
+        rawValue: "DocumentationViewControllerDocumentURLDidChangeNotification")
+    static let DocumentViewerStateDidChange = Notification.Name(
+        rawValue: "DocumentationViewControllerViewerStateDidChangeNotification")
+}
 
 class DocumentationViewController:
     NSViewController,
     WKNavigationDelegate
 {
 
-    @objc enum ViewerState: Int {
+    enum ViewerState {
         case blank
         case initializing
         case ready
@@ -15,9 +24,21 @@ class DocumentationViewController:
     private var webView: WKWebView!
     private var searchCVC: SearchControlViewController?
 
-    @objc dynamic var documentTitle: String?
-    @objc dynamic var documentURL: URL?
-    @objc dynamic var viewerState: ViewerState = .blank
+    private(set) var documentTitle: String? {
+        didSet {
+            NotificationCenter.default.post(name: .DocumentTitleDidChange, object: self)
+        }
+    }
+    var documentURL: URL? {
+        didSet {
+            NotificationCenter.default.post(name: .DocumentURLDidChange, object: self)
+        }
+    }
+    private(set) var viewerState: ViewerState = .blank {
+        didSet {
+            NotificationCenter.default.post(name: .DocumentViewerStateDidChange, object: self)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
