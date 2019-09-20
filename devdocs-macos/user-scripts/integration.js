@@ -22,6 +22,11 @@
   const app = await globalDefined('app')
   app.isMobile = () => false
   app.views.Mobile.detect = () => false
+  app.reboot = () => {
+    window.webkit.messageHandlers.vcBus.postMessage({
+      type: 'appReboot'
+    })
+  }
 
   window.matchMedia = original
   window.webkit.messageHandlers.vcBus.postMessage({ type: 'afterInit' })

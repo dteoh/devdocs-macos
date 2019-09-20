@@ -195,6 +195,10 @@ class DocumentationViewController: NSViewController {
         self.documentURL = URL(string: location)
         hideSearchControl()
     }
+
+    private func handleAppReboot() {
+        webView.reload()
+    }
 }
 
 // MARK:- WKUIDelegate
@@ -256,6 +260,8 @@ extension DocumentationViewController: WKScriptMessageHandler {
                 return
             }
             handleLocationNotification(args)
+        case "appReboot":
+            handleAppReboot()
         default:
             return
         }
