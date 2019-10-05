@@ -72,6 +72,8 @@ class DocumentationViewController: NSViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.wantsLayer = true
+        // not possible to set "opaque" property, not possible to set backgroundColor...
+        webView.setValue(false, forKey: "drawsBackground")
 
         view.addSubview(webView)
         NSLayoutConstraint.activate([
