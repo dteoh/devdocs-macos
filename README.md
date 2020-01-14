@@ -10,10 +10,10 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 ## Features
 
 - [x] Tabs
-- [x] Global shortcut (<kbd>Option+Space</kbd>)
+- [x] Global shortcut (<kbd>Option + Space</kbd>), customizable
 - [x] Automatic dark/light mode UI
 - [x] Protocol handler integration (handle `devdocs-macos://`, `http://`, and `https://` URLs)
-- [x] Page search (Cmd + F)
+- [x] Page search (<kbd>Cmd + F</kbd>)
 
 ### Protocol handler integration
 
