@@ -13,6 +13,7 @@ An unofficial [DevDocs API Documentation][1] viewer for macOS.
 - [x] Global shortcut (<kbd>Option+Space</kbd>)
 - [x] Automatic dark/light mode UI
 - [x] Protocol handler integration (handle `devdocs-macos://`, `http://`, and `https://` URLs)
+- [x] Page search (Cmd + F)
 
 ### Protocol handler integration
 
