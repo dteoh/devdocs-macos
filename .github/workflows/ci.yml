@@ -1,10 +1,15 @@
-name: JavaScript
+name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
-  build:
-    runs-on: macOS-10.14
+  js_standard:
+    name: JavaScript Standard Style
+    runs-on: macOS-latest
 
     strategy:
       matrix:
