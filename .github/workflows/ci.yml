@@ -1,4 +1,4 @@
-name: JavaScript
+name: CI
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
   pull_request:
 
 jobs:
-  build:
+  js_standard:
+    name: JavaScript Standard Style
     runs-on: macOS-10.14
 
     strategy:
