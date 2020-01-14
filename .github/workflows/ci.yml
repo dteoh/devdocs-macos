@@ -9,7 +9,7 @@ on:
 jobs:
   js_standard:
     name: JavaScript Standard Style
-    runs-on: macOS-10.14
+    runs-on: macOS-latest
 
     strategy:
       matrix:
