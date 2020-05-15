@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,42 +17,88 @@
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="318" height="102"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="contentRect" x="196" y="240" width="300" height="150"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <value key="minSize" type="size" width="300" height="150"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="318" height="102"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-DH-I7Z" customClass="MASShortcutView">
-                        <rect key="frame" x="135" y="61" width="163" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUZ-2D-ASu">
-                        <rect key="frame" x="153" y="13" width="151" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Restore defaults..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r9Z-qe-Up0">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="restoreDefaults:" target="-2" id="bad-yA-Cme"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLs-UG-n2b">
-                        <rect key="frame" x="18" y="65" width="111" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Global shortcut:" id="U8G-v4-cE9">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
+                    <gridView fixedFrame="YES" xPlacement="none" yPlacement="none" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="L0m-3Z-iRC">
+                        <rect key="frame" x="30" y="17" width="240" height="116"/>
+                        <rows>
+                            <gridRow yPlacement="center" rowAlignment="none" bottomPadding="8" id="oya-rS-Vwn"/>
+                            <gridRow bottomPadding="8" id="eSU-Fq-qHb"/>
+                            <gridRow yPlacement="bottom" height="42" id="Gra-w4-ZpZ"/>
+                        </rows>
+                        <columns>
+                            <gridColumn xPlacement="trailing" id="cgL-ew-iuH"/>
+                            <gridColumn xPlacement="leading" id="3zb-nY-eFJ"/>
+                        </columns>
+                        <gridCells>
+                            <gridCell row="oya-rS-Vwn" column="cgL-ew-iuH" id="5Bh-Cw-A9Z">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLs-UG-n2b">
+                                    <rect key="frame" x="-2" y="93" width="102" height="16"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Global shortcut:" id="U8G-v4-cE9">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="oya-rS-Vwn" column="3zb-nY-eFJ" id="BpC-vH-U6D">
+                                <customView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-DH-I7Z" customClass="MASShortcutView">
+                                    <rect key="frame" x="104" y="86" width="100" height="30"/>
+                                </customView>
+                            </gridCell>
+                            <gridCell row="eSU-Fq-qHb" column="cgL-ew-iuH" id="Ktb-Mk-2mJ">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v5E-4j-dS4">
+                                    <rect key="frame" x="47" y="56" width="53" height="16"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Startup:" id="7Ml-td-ltB">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="eSU-Fq-qHb" column="3zb-nY-eFJ" id="yIA-9o-EA6">
+                                <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UP0-PV-5sP">
+                                    <rect key="frame" x="102" y="55" width="140" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Restore documents" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pK0-Ox-QTp">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <binding destination="E4w-VZ-Y12" name="value" keyPath="values.restoreDocs" id="dcM-sC-Yho">
+                                            <dictionary key="options">
+                                                <integer key="NSNullPlaceholder" value="1"/>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                            <gridCell row="Gra-w4-ZpZ" column="cgL-ew-iuH" headOfMergedCell="ktl-eK-akI" id="ktl-eK-akI">
+                                <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kUZ-2D-ASu">
+                                    <rect key="frame" x="95" y="-7" width="151" height="32"/>
+                                    <buttonCell key="cell" type="push" title="Restore defaults..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r9Z-qe-Up0">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="restoreDefaults:" target="-2" id="bad-yA-Cme"/>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                            <gridCell row="Gra-w4-ZpZ" column="3zb-nY-eFJ" headOfMergedCell="ktl-eK-akI" id="ENg-Zr-n8t"/>
+                        </gridCells>
+                    </gridView>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="12" y="-21"/>
+            <point key="canvasLocation" x="-104" y="-5"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="E4w-VZ-Y12"/>
     </objects>
 </document>
