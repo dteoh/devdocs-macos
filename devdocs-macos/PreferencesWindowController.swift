@@ -23,5 +23,6 @@ class PreferencesWindowController: NSWindowController {
         if let recorderView = masShortcutRecorderView {
             recorderView.shortcutValue = Summoner.defaultShortcut
         }
+        GeneralPreferences.restoreDefaults()
     }
 }
