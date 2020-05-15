@@ -9,12 +9,19 @@ public extension Notification.Name {
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
         let _ = DocumentationWindows.shared
+        URLEventHandler.shared.install()
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Summoner.shared.install()
-        URLEventHandler.shared.install()
-        DocumentationWindows.shared.restore()
+
+        if GeneralPreferences.shouldRestoreDocs() {
+            DocumentationWindows.shared.restore()
+        }
+
+        DispatchQueue.main.async {
+            DocumentationWindows.shared.newWindowIfNoWindow()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
