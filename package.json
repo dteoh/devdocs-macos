@@ -10,6 +10,6 @@
     "fix": "standard --env browser --fix \"devdocs-macos/user-scripts/**/*.js\""
   },
   "devDependencies": {
-    "standard": "^14.0.2"
+    "standard": "^14.3.4"
   }
 }
