@@ -44,10 +44,6 @@ class DocumentationWindows: NSObject {
     }
 
     func restore() {
-        if !GeneralPreferences.shouldRestoreDocs() {
-            newWindow()
-            return
-        }
         if let urls = Storage.getLocations() {
             urls.filter { url -> Bool in
                 if let host = url.host {
@@ -58,8 +54,6 @@ class DocumentationWindows: NSObject {
             }.forEach { url in
                 newWindow(forURL: url)
             }
-        } else {
-            newWindow()
         }
     }
 }
