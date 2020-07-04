@@ -14,6 +14,7 @@ class DocumentationWindowController: NSWindowController {
 
     override func awakeFromNib() {
         guard let dvc = documentationViewController else { return }
+        dvc.delegate = self
         dvc.documentURL = documentation.url
     }
 
@@ -108,5 +109,24 @@ class DocumentationWindowController: NSWindowController {
                 }
             }
         )
+    }
+}
+
+// MARK:- DocumentationViewDelegate
+extension DocumentationWindowController: DocumentationViewDelegate {
+    func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void) {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = parameters.allowsDirectories
+        panel.allowsMultipleSelection = parameters.allowsMultipleSelection
+        panel.allowedFileTypes = ["json"]
+        panel.allowsOtherFileTypes = false
+        panel.resolvesAliases = true
+
+        panel.beginSheetModal(for: self.window!) { modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
+                completionHandler([url])
+            }
+        }
     }
 }

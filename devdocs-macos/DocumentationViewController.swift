@@ -18,6 +18,7 @@ class DocumentationViewController: NSViewController {
         case ready
     }
 
+    weak var delegate: DocumentationViewDelegate?
     private var webView: WKWebView!
     private var searchCVC: SearchControlViewController?
 
@@ -203,6 +204,11 @@ class DocumentationViewController: NSViewController {
     }
 }
 
+protocol DocumentationViewDelegate: class {
+    typealias OpenPanelParameters = WKOpenPanelParameters
+    func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void)
+}
+
 // MARK:- WKUIDelegate
 extension DocumentationViewController: WKUIDelegate {
     func webView(_ webView: WKWebView,
@@ -228,6 +234,13 @@ extension DocumentationViewController: WKUIDelegate {
         }
 
         return nil
+    }
+
+    func webView(_ webView: WKWebView,
+                 runOpenPanelWith parameters: WKOpenPanelParameters,
+                 initiatedByFrame frame: WKFrameInfo,
+                 completionHandler: @escaping ([URL]?) -> Void) {
+        delegate?.selectFileToOpen(parameters, completionHandler: completionHandler)
     }
 }
 
