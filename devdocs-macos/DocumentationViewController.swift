@@ -141,6 +141,10 @@ class DocumentationViewController: NSViewController {
         }
     }
 
+    func overridePreferencesExport() {
+        webView.evaluateJavaScript("overridePreferencesExport();")
+    }
+
     private func addFeatureScripts(_ controller: WKUserContentController) {
         if let pageObserverScript = readUserScript("page-observer") {
             let pageObserver = WKUserScript(source: pageObserverScript,
@@ -202,11 +206,19 @@ class DocumentationViewController: NSViewController {
     private func handleAppReboot() {
         webView.reload()
     }
+
+    private func handleExportPreferences(_ args: [AnyHashable: Any]) {
+        guard let preferences = args["preferences"] as! String? else {
+            return
+        }
+        delegate?.savePreferencesToFile(preferences)
+    }
 }
 
 protocol DocumentationViewDelegate: class {
     typealias OpenPanelParameters = WKOpenPanelParameters
     func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void)
+    func savePreferencesToFile(_ preferences: String)
 }
 
 // MARK:- WKUIDelegate
@@ -277,6 +289,11 @@ extension DocumentationViewController: WKScriptMessageHandler {
             handleLocationNotification(args)
         case "appReboot":
             handleAppReboot()
+        case "exportPreferences":
+            guard let args = msg["args"] as? [AnyHashable: Any] else {
+                return
+            }
+            handleExportPreferences(args)
         default:
             return
         }

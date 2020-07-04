@@ -57,6 +57,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
+        dvc.overridePreferencesExport()
         dvc.useNativeScrollbars(true)
 
         guard let window = self.window else { return }
@@ -126,6 +127,24 @@ extension DocumentationWindowController: DocumentationViewDelegate {
         panel.beginSheetModal(for: self.window!) { modalResponse in
             if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
                 completionHandler([url])
+            }
+        }
+    }
+
+    func savePreferencesToFile(_ preferences: String) {
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = "devdocs-preferences.json"
+        panel.allowedFileTypes = ["json"]
+        panel.allowsOtherFileTypes = false
+        panel.isExtensionHidden = false
+
+        panel.beginSheetModal(for: self.window!) { modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
+                do {
+                    try preferences.write(to: url, atomically: true, encoding: .utf8)
+                } catch {
+                    NSApplication.shared.presentError(error)
+                }
             }
         }
     }

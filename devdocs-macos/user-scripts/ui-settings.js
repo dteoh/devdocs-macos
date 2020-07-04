@@ -20,3 +20,17 @@ window.useNativeScrollbars = function (enable) {
     sp.toggleLayout('_native-scrollbars', enable)
   })
 }
+
+window.overridePreferencesExport = function () {
+  requestAnimationFrame(() => {
+    app.document.content.settingsPage.export = () => {
+      const preferences = JSON.stringify(app.settings.export())
+      window.webkit.messageHandlers.vcBus.postMessage({
+        type: 'exportPreferences',
+        args: {
+          preferences
+        }
+      })
+    }
+  })
+}
