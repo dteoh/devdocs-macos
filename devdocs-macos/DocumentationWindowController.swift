@@ -23,8 +23,6 @@ class DocumentationWindowController: NSWindowController {
     }
 
     override func windowDidLoad() {
-        observeEffectiveAppearance()
-
         guard let dvc = documentationViewController else { return }
 
         NotificationCenter.default.addObserver(self,
@@ -59,16 +57,6 @@ class DocumentationWindowController: NSWindowController {
 
         dvc.overridePreferencesExport()
         dvc.useNativeScrollbars(true)
-
-        guard let window = self.window else { return }
-        switch window.effectiveAppearance.name {
-        case .aqua:
-            dvc.useDarkMode(false)
-        case .darkAqua:
-            dvc.useDarkMode(true)
-        default:
-            break;
-        }
     }
 
     @objc private func observeDocumentTitle() {
@@ -89,27 +77,6 @@ class DocumentationWindowController: NSWindowController {
 
         guard let dvc = documentationViewController else { return }
         dvc.showSearchControl()
-    }
-
-    // MARK:- KVO observers
-
-    private func observeEffectiveAppearance() {
-        guard let window = self.window else { return }
-        observations.insert(
-            window.observe(\NSWindow.effectiveAppearance) { [weak self] (win, _) in
-                guard let dvc = self?.documentationViewController else {
-                    return
-                }
-                switch window.effectiveAppearance.name {
-                case .aqua:
-                    dvc.useDarkMode(false)
-                case .darkAqua:
-                    dvc.useDarkMode(true)
-                default:
-                    break;
-                }
-            }
-        )
     }
 }
 

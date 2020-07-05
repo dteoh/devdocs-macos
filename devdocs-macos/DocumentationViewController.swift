@@ -125,14 +125,6 @@ class DocumentationViewController: NSViewController {
 
     // MARK:- JS integration
 
-    func useDarkMode(_ using: Bool) {
-        if using {
-            webView.evaluateJavaScript("useDarkMode(true);")
-        } else {
-            webView.evaluateJavaScript("useDarkMode(false);")
-        }
-    }
-
     func useNativeScrollbars(_ using: Bool) {
         if using {
             webView.evaluateJavaScript("useNativeScrollbars(true);")
