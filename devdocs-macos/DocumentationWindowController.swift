@@ -14,6 +14,7 @@ class DocumentationWindowController: NSWindowController {
 
     override func awakeFromNib() {
         guard let dvc = documentationViewController else { return }
+        dvc.delegate = self
         dvc.documentURL = documentation.url
     }
 
@@ -56,6 +57,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
+        dvc.overridePreferencesExport()
         dvc.useNativeScrollbars(true)
 
         guard let window = self.window else { return }
@@ -108,5 +110,42 @@ class DocumentationWindowController: NSWindowController {
                 }
             }
         )
+    }
+}
+
+// MARK:- DocumentationViewDelegate
+extension DocumentationWindowController: DocumentationViewDelegate {
+    func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void) {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = parameters.allowsDirectories
+        panel.allowsMultipleSelection = parameters.allowsMultipleSelection
+        panel.allowedFileTypes = ["json"]
+        panel.allowsOtherFileTypes = false
+        panel.resolvesAliases = true
+
+        panel.beginSheetModal(for: self.window!) { modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
+                completionHandler([url])
+            }
+        }
+    }
+
+    func savePreferencesToFile(_ preferences: String) {
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = "devdocs-preferences.json"
+        panel.allowedFileTypes = ["json"]
+        panel.allowsOtherFileTypes = false
+        panel.isExtensionHidden = false
+
+        panel.beginSheetModal(for: self.window!) { modalResponse in
+            if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
+                do {
+                    try preferences.write(to: url, atomically: true, encoding: .utf8)
+                } catch {
+                    NSApplication.shared.presentError(error)
+                }
+            }
+        }
     }
 }
