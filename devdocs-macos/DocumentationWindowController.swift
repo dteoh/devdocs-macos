@@ -94,6 +94,8 @@ extension DocumentationWindowController: DocumentationViewDelegate {
         panel.beginSheetModal(for: self.window!) { modalResponse in
             if modalResponse == NSApplication.ModalResponse.OK, let url = panel.url {
                 completionHandler([url])
+            } else {
+                completionHandler(nil)
             }
         }
     }
