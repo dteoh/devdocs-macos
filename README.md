@@ -70,6 +70,17 @@ $ brew cask install dteoh-devdocs
 
 The application will live at `/Applications/DevDocs.app`.
 
+#### Migrating from project tap to the default tap
+
+The application had a tap maintained by the project. To migrate to the default
+tap:
+
+```
+$ brew cask uninstall devdocs-macos
+$ brew untap dteoh/devdocs
+$ brew cask install dteoh-devdocs
+```
+
 ### Compatibility
 
 The app is currently developed on Mojave and only support for Mojave can be
