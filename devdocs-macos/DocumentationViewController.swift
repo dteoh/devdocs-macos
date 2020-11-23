@@ -165,7 +165,6 @@ class DocumentationViewController: NSViewController {
             return
         }
         self.documentURL = URL(string: location)
-        // TODO: reset search
     }
 
     private func handleAppReboot() {
