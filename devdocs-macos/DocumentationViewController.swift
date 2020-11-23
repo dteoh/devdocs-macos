@@ -167,11 +167,7 @@ class DocumentationViewController: NSViewController {
             }
         }
 
-        if let doc = args["doc"] as! String? {
-            self.documentCategory = doc
-        } else {
-            self.documentCategory = nil
-        }
+        self.documentCategory = args["doc"] as! String?
     }
 
     private func handleLocationNotification(_ args: [AnyHashable: Any]) {
