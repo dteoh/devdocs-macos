@@ -110,6 +110,12 @@ class DocumentationViewController: NSViewController {
 
     // MARK:- Page search
 
+    @IBAction func searchDocumentation(_ sender: NSSearchField) {
+        let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": sender.stringValue])
+        let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
+        webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
+    }
+
     func showSearchControl() {
         if viewerState != .ready {
             return
@@ -301,6 +307,13 @@ extension DocumentationViewController: SearchControlDelegate {
     }
 
     func dismiss() {
+        webView.evaluateJavaScript("resetSearch();")
+    }
+}
+
+// MARK:- NSSearchFieldDelegate
+extension DocumentationViewController: NSSearchFieldDelegate {
+    func searchFieldDidEndSearching(_ sender: NSSearchField) {
         webView.evaluateJavaScript("resetSearch();")
     }
 }
