@@ -20,7 +20,6 @@ class DocumentationViewController: NSViewController {
 
     weak var delegate: DocumentationViewDelegate?
     private var webView: WKWebView!
-    private var searchCVC: SearchControlViewController?
 
     private(set) var documentTitle: String? {
         didSet {
@@ -42,7 +41,6 @@ class DocumentationViewController: NSViewController {
         super.viewDidLoad()
         self.viewerState = .initializing
         setupWebView()
-        setupSearchControlView()
         loadWebsite()
     }
 
@@ -85,24 +83,6 @@ class DocumentationViewController: NSViewController {
         ])
     }
 
-    private func setupSearchControlView() {
-        // Need to store strong ref to the VC, or IBActions don't work
-        let searchCVC = SearchControlViewController()
-        searchCVC.delegate = self
-
-        let searchView = searchCVC.view
-        searchView.translatesAutoresizingMaskIntoConstraints = false
-        searchView.isHidden = true
-
-        webView.addSubview(searchView);
-        NSLayoutConstraint.activate([
-            searchView.widthAnchor.constraint(equalToConstant: 270),
-            searchView.rightAnchor.constraint(equalTo: webView.rightAnchor)
-        ])
-
-        self.searchCVC = searchCVC
-    }
-
     private func loadWebsite() {
         let request = URLRequest(url: documentURL!)
         webView.load(request)
@@ -114,19 +94,6 @@ class DocumentationViewController: NSViewController {
         let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": sender.stringValue])
         let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
         webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
-    }
-
-    func showSearchControl() {
-        if viewerState != .ready {
-            return
-        }
-        guard let vc = searchCVC else { return }
-        vc.activate()
-    }
-
-    func hideSearchControl() {
-        guard let vc = searchCVC else { return }
-        vc.dismissSearch(self)
     }
 
     // MARK:- JS integration
@@ -198,7 +165,7 @@ class DocumentationViewController: NSViewController {
             return
         }
         self.documentURL = URL(string: location)
-        hideSearchControl()
+        // TODO: reset search
     }
 
     private func handleAppReboot() {
@@ -295,19 +262,6 @@ extension DocumentationViewController: WKScriptMessageHandler {
         default:
             return
         }
-    }
-}
-
-// MARK:- SearchControlDelegate
-extension DocumentationViewController: SearchControlDelegate {
-    func search(term: String) {
-        let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": term])
-        let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
-        webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
-    }
-
-    func dismiss() {
-        webView.evaluateJavaScript("resetSearch();")
     }
 }
 

@@ -75,8 +75,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
-        guard let dvc = documentationViewController else { return }
-        dvc.showSearchControl()
+        // TODO: focus search field
     }
 }
 
