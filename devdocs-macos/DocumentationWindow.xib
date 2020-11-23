@@ -40,7 +40,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </searchFieldCell>
                             <connections>
-                                <action selector="searchDocumentation:" target="f61-KY-zVD" id="ZAe-5r-fMu"/>
+                                <action selector="searchPageContents:" target="f61-KY-zVD" id="ZAe-5r-fMu"/>
                                 <outlet property="delegate" destination="f61-KY-zVD" id="6cm-hv-cR5"/>
                             </connections>
                         </searchField>

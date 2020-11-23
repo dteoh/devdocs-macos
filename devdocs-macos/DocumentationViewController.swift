@@ -90,7 +90,7 @@ class DocumentationViewController: NSViewController {
 
     // MARK:- Page search
 
-    @IBAction func searchDocumentation(_ sender: NSSearchField) {
+    @IBAction func searchPageContents(_ sender: NSSearchField) {
         let argsBytes = try! JSONSerialization.data(withJSONObject: ["term": sender.stringValue])
         let args = NSString(data: argsBytes, encoding: String.Encoding.utf8.rawValue)! as String
         webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
