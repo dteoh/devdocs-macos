@@ -3,6 +3,7 @@ import WebKit
 
 class DocumentationWindowController: NSWindowController {
 
+    @IBOutlet weak var contentSearchField: NSSearchField?
     @IBOutlet weak var documentationViewController: DocumentationViewController?
 
     var documentation: Documentation!
@@ -75,7 +76,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
-        // TODO: focus search field
+        window .makeFirstResponder(contentSearchField)
     }
 }
 

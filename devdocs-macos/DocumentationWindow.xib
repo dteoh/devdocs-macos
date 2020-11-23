@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DocumentationWindowController" customModule="DevDocs" customModuleProvider="target">
             <connections>
+                <outlet property="contentSearchField" destination="nuW-bv-dAc" id="VBO-Nb-W9g"/>
                 <outlet property="documentationViewController" destination="f61-KY-zVD" id="SGK-n1-U1U"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LfB-8c-kAm"/>
             </connections>
