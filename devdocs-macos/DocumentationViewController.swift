@@ -293,4 +293,15 @@ extension DocumentationViewController: NavigationToolbarItemDelegate {
             return false;
         }
     }
+
+    @IBAction func navigate(_ sender: NavigationToolbarItem) {
+        switch sender.itemIdentifier {
+        case .navigateBack:
+            webView.evaluateJavaScript("window.history.back();")
+        case .navigateForward:
+            webView.evaluateJavaScript("window.history.forward();")
+        default:
+            return;
+        }
+    }
 }

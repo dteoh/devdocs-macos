@@ -204,6 +204,8 @@ extension DocumentationWindowController: NSToolbarDelegate {
             for subitem in itemGroup.subitems {
                 let navigationItem = subitem as! NavigationToolbarItem
                 navigationItem.navigationDelegate = documentationViewController
+                navigationItem.target = documentationViewController
+                navigationItem.action = #selector(documentationViewController?.navigate(_:))
             }
         case .contentSearch:
             let searchItem = item as! NSSearchToolbarItem
@@ -227,6 +229,8 @@ extension DocumentationWindowController: NSToolbarDelegate {
             for subitem in itemGroup.subitems {
                 let navigationItem = subitem as! NavigationToolbarItem
                 navigationItem.navigationDelegate = nil
+                navigationItem.target = nil
+                navigationItem.action = nil
             }
         case .contentSearch:
             contentSearchField = nil
