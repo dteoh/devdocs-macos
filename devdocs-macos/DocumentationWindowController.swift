@@ -142,13 +142,19 @@ extension DocumentationWindowController: DocumentationViewDelegate {
 
 // MARK:- NSToolbarItem.Identifier
 extension NSToolbarItem.Identifier {
+    static let historyNavigation: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "HistoryNavigation")
     static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "ContentSearch")
+
+    // Sub items
+    static let navigateBack: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "NavigateBack")
+    static let navigateForward: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "NavigateForward")
 }
 
 // MARK:- NSToolbarDelegate
 extension DocumentationWindowController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
+            .historyNavigation,
             .space,
             .flexibleSpace,
             .contentSearch
@@ -156,15 +162,28 @@ extension DocumentationWindowController: NSToolbarDelegate {
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [
-            .flexibleSpace, .contentSearch
-        ]
+        return [.historyNavigation, .flexibleSpace, .contentSearch]
     }
 
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
+        case .historyNavigation:
+            let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
+            item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
+            item.isNavigational = true
+
+            let backItem = NSToolbarItem(itemIdentifier: .navigateBack)
+            backItem.label = NSLocalizedString("Back", comment: "Navigate back")
+            backItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: backItem.label)
+
+            let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
+            forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
+            forwardItem.image = NSImage(systemSymbolName: "chevron.forward", accessibilityDescription: forwardItem.label)
+
+            item.subitems = [backItem, forwardItem]
+            return item
         case .contentSearch:
-            let item = NSSearchToolbarItem(itemIdentifier: .contentSearch)
+            let item = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
             item.searchField.recentsAutosaveName = NSSearchField.RecentsAutosaveName("content-search-term")
             return item
         default:
