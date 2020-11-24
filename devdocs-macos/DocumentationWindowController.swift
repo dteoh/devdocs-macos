@@ -88,7 +88,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
-        window .makeFirstResponder(contentSearchField)
+        window.makeFirstResponder(contentSearchField)
     }
 }
 
