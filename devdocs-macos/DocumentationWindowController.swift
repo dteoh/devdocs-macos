@@ -37,6 +37,11 @@ class DocumentationWindowController: NSWindowController {
                                                object: dvc)
 
         NotificationCenter.default.addObserver(self,
+                                               selector: #selector(observeDocumentCategory),
+                                               name: .DocumentCategoryDidChange,
+                                               object: dvc)
+
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(observeDocumentURL),
                                                name: .DocumentURLDidChange,
                                                object: dvc)
@@ -63,6 +68,13 @@ class DocumentationWindowController: NSWindowController {
     @objc private func observeDocumentTitle() {
         guard let dvc = documentationViewController else { return }
         self.window?.title = dvc.documentTitle ?? "DevDocs"
+    }
+
+    @objc private func observeDocumentCategory() {
+        guard let dvc = documentationViewController else { return }
+        if #available(OSX 11.0, *) {
+            self.window?.subtitle = dvc.documentCategory ?? ""
+        }
     }
 
     @objc private func observeDocumentURL() {

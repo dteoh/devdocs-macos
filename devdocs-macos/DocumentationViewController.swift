@@ -4,6 +4,8 @@ import WebKit
 public extension Notification.Name {
     static let DocumentTitleDidChange = Notification.Name(
         rawValue: "DocumentationViewControllerDocumentTitleDidChangeNotification")
+    static let DocumentCategoryDidChange = Notification.Name(
+        rawValue: "DocumentationViewControllerDocumentCategoryDidChangeNotification")
     static let DocumentURLDidChange = Notification.Name(
         rawValue: "DocumentationViewControllerDocumentURLDidChangeNotification")
     static let DocumentViewerStateDidChange = Notification.Name(
@@ -24,6 +26,11 @@ class DocumentationViewController: NSViewController {
     private(set) var documentTitle: String? {
         didSet {
             NotificationCenter.default.post(name: .DocumentTitleDidChange, object: self)
+        }
+    }
+    private(set) var documentCategory: String? {
+        didSet {
+            NotificationCenter.default.post(name: .DocumentCategoryDidChange, object: self)
         }
     }
     var documentURL: URL? {
@@ -149,15 +156,18 @@ class DocumentationViewController: NSViewController {
     }
 
     private func handleTitleNotification(_ args: [AnyHashable: Any]) {
-        guard let title = args["title"] as! String? else {
-            return
+        if let topic = args["topic"] as! String? {
+            self.documentTitle = topic
+        } else if let title = args["title"] as! String? {
+            let suffix = " — DevDocs"
+            if title.hasSuffix(suffix) {
+                self.documentTitle = title.replacingOccurrences(of: suffix, with: "")
+            } else {
+                self.documentTitle = title
+            }
         }
-        let suffix = " — DevDocs"
-        if title.hasSuffix(suffix) {
-            self.documentTitle = title.replacingOccurrences(of: suffix, with: "")
-        } else {
-            self.documentTitle = title
-        }
+
+        self.documentCategory = args["doc"] as! String?
     }
 
     private func handleLocationNotification(_ args: [AnyHashable: Any]) {

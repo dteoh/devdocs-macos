@@ -1,10 +1,22 @@
 /* global $ */
 (function () {
+  const findTitleComponents = function () {
+    const { entry } = window.app.document.content.view
+    if (!entry) {
+      return {}
+    }
+    return {
+      doc: entry.doc.name,
+      topic: entry.name
+    }
+  }
+
   const observer = new MutationObserver((mutations) => {
     window.webkit.messageHandlers.vcBus.postMessage({
       type: 'titleNotification',
       args: {
-        title: $('head title').innerText
+        title: $('head title').innerText,
+        ...findTitleComponents()
       }
     })
     window.webkit.messageHandlers.vcBus.postMessage({
