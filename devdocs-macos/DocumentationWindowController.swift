@@ -72,9 +72,7 @@ class DocumentationWindowController: NSWindowController {
 
     @objc private func observeDocumentCategory() {
         guard let dvc = documentationViewController else { return }
-        if #available(OSX 11.0, *) {
-            self.window?.subtitle = dvc.documentCategory ?? ""
-        }
+        self.window?.subtitle = dvc.documentCategory ?? ""
     }
 
     @objc private func observeDocumentURL() {
@@ -88,7 +86,7 @@ class DocumentationWindowController: NSWindowController {
             return
         }
 
-        window .makeFirstResponder(contentSearchField)
+        window.makeFirstResponder(contentSearchField)
     }
 }
 
