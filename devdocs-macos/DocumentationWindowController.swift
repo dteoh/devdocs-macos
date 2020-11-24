@@ -3,11 +3,11 @@ import WebKit
 
 class DocumentationWindowController: NSWindowController {
 
-    @IBOutlet weak var contentSearchField: NSSearchField?
     @IBOutlet weak var documentationViewController: DocumentationViewController?
 
     var documentation: Documentation!
     private var observations: Set<NSKeyValueObservation>!
+    private var contentSearchField: NSSearchField?
 
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("DocumentationWindow")
@@ -25,6 +25,8 @@ class DocumentationWindowController: NSWindowController {
 
     override func windowDidLoad() {
         guard let dvc = documentationViewController else { return }
+
+        setupToolbar()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(observeViewerState),
@@ -50,6 +52,15 @@ class DocumentationWindowController: NSWindowController {
                                                selector: #selector(observeMenuFindAction),
                                                name: .MenuFindAction,
                                                object: nil)
+    }
+
+    private func setupToolbar() {
+        let toolbar = NSToolbar(identifier: "DocumentationWindowToolbar")
+        toolbar.allowsUserCustomization = true
+        toolbar.autosavesConfiguration = true
+        toolbar.displayMode = .iconOnly
+        toolbar.delegate = self
+        window?.toolbar = toolbar
     }
 
     // MARK:- NotificationCenter observers
@@ -125,6 +136,74 @@ extension DocumentationWindowController: DocumentationViewDelegate {
                     NSApplication.shared.presentError(error)
                 }
             }
+        }
+    }
+}
+
+// MARK:- NSToolbarItem.Identifier
+extension NSToolbarItem.Identifier {
+    static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "ContentSearch")
+}
+
+// MARK:- NSToolbarDelegate
+extension DocumentationWindowController: NSToolbarDelegate {
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [
+            .space,
+            .flexibleSpace,
+            .contentSearch
+        ]
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [
+            .flexibleSpace, .contentSearch
+        ]
+    }
+
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        switch itemIdentifier {
+        case .contentSearch:
+            let item = NSSearchToolbarItem(itemIdentifier: .contentSearch)
+            item.searchField.recentsAutosaveName = NSSearchField.RecentsAutosaveName("content-search-term")
+            return item
+        default:
+            return nil
+        }
+    }
+
+    func toolbarWillAddItem(_ notification: Notification) {
+        guard let item = notification.userInfo?["item"] as? NSToolbarItem else {
+            return
+        }
+
+        switch item.itemIdentifier {
+        case .contentSearch:
+            let searchItem = item as! NSSearchToolbarItem
+            searchItem.searchField.delegate = documentationViewController
+            searchItem.searchField.target = documentationViewController
+            searchItem.searchField.action = #selector(documentationViewController?.searchPageContents(_:))
+            contentSearchField = searchItem.searchField
+        default:
+            return
+        }
+    }
+
+    func toolbarDidRemoveItem(_ notification: Notification) {
+        guard let item = notification.userInfo?["item"] as? NSToolbarItem else {
+            return
+        }
+
+        switch item.itemIdentifier {
+        case .contentSearch:
+            contentSearchField = nil
+
+            let searchItem = item as! NSSearchToolbarItem
+            searchItem.searchField.delegate = nil
+            searchItem.searchField.target = nil
+            searchItem.searchField.action = nil
+        default:
+            return
         }
     }
 }
