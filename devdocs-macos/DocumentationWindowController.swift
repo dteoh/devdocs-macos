@@ -172,13 +172,15 @@ extension DocumentationWindowController: NSToolbarDelegate {
             item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
             item.isNavigational = true
 
-            let backItem = NSToolbarItem(itemIdentifier: .navigateBack)
+            let backItem = NavigationToolbarItem(itemIdentifier: .navigateBack)
             backItem.label = NSLocalizedString("Back", comment: "Navigate back")
             backItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: backItem.label)
+            backItem.autovalidates = true
 
-            let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
+            let forwardItem = NavigationToolbarItem(itemIdentifier: .navigateForward)
             forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
             forwardItem.image = NSImage(systemSymbolName: "chevron.forward", accessibilityDescription: forwardItem.label)
+            forwardItem.autovalidates = true
 
             item.subitems = [backItem, forwardItem]
             return item
