@@ -199,6 +199,12 @@ extension DocumentationWindowController: NSToolbarDelegate {
         }
 
         switch item.itemIdentifier {
+        case .historyNavigation:
+            let itemGroup = item as! NSToolbarItemGroup
+            for subitem in itemGroup.subitems {
+                let navigationItem = subitem as! NavigationToolbarItem
+                navigationItem.navigationDelegate = documentationViewController
+            }
         case .contentSearch:
             let searchItem = item as! NSSearchToolbarItem
             searchItem.searchField.delegate = documentationViewController
@@ -216,6 +222,12 @@ extension DocumentationWindowController: NSToolbarDelegate {
         }
 
         switch item.itemIdentifier {
+        case .historyNavigation:
+            let itemGroup = item as! NSToolbarItemGroup
+            for subitem in itemGroup.subitems {
+                let navigationItem = subitem as! NavigationToolbarItem
+                navigationItem.navigationDelegate = nil
+            }
         case .contentSearch:
             contentSearchField = nil
 

@@ -280,3 +280,17 @@ extension DocumentationViewController: NSSearchFieldDelegate {
         webView.evaluateJavaScript("resetSearch();")
     }
 }
+
+// MARK:- NavigationToolbarItemDelegate
+extension DocumentationViewController: NavigationToolbarItemDelegate {
+    func canNavigate(_ item: NavigationToolbarItem) -> Bool {
+        switch item.itemIdentifier {
+        case .navigateBack:
+            return webView.backForwardList.backItem.map { _ in true } ?? false
+        case .navigateForward:
+            return webView.backForwardList.forwardItem.map { _ in true } ?? false
+        default:
+            return false;
+        }
+    }
+}
