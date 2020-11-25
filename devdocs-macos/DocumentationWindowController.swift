@@ -60,7 +60,12 @@ class DocumentationWindowController: NSWindowController {
         toolbar.autosavesConfiguration = true
         toolbar.displayMode = .iconOnly
         toolbar.delegate = self
-        window?.toolbar = toolbar
+
+        if let window = window {
+            window.titlebarAppearsTransparent = true
+            window.toolbarStyle = .automatic
+            window.toolbar = toolbar
+        }
     }
 
     // MARK:- NotificationCenter observers
