@@ -174,24 +174,20 @@ extension DocumentationWindowController: NSToolbarDelegate {
         switch itemIdentifier {
         case .historyNavigation:
             let backItem = NSToolbarItem(itemIdentifier: .navigateBack)
-            do {
-                backItem.label = NSLocalizedString("Back", comment: "Navigate back")
-                backItem.toolTip = backItem.label
-                backItem.isBordered = true
-                backItem.image = NSImage(systemSymbolName: "chevron.backward",
-                                         accessibilityDescription: NSLocalizedString("Navigate back", comment: "Navigate back"))
-                backItem.autovalidates = true
-            }
+            backItem.label = NSLocalizedString("Back", comment: "Navigate back")
+            backItem.toolTip = backItem.label
+            backItem.isBordered = true
+            backItem.image = NSImage(systemSymbolName: "chevron.backward",
+                                     accessibilityDescription: NSLocalizedString("Navigate back", comment: "Navigate back"))
+            backItem.autovalidates = true
 
             let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
-            do {
-                forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
-                forwardItem.toolTip = forwardItem.label
-                forwardItem.isBordered = true
-                forwardItem.image = NSImage(systemSymbolName: "chevron.forward",
-                                            accessibilityDescription: NSLocalizedString("Navigate forward", comment: "Navigate forward"))
-                forwardItem.autovalidates = true
-            }
+            forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
+            forwardItem.toolTip = forwardItem.label
+            forwardItem.isBordered = true
+            forwardItem.image = NSImage(systemSymbolName: "chevron.forward",
+                                        accessibilityDescription: NSLocalizedString("Navigate forward", comment: "Navigate forward"))
+            forwardItem.autovalidates = true
 
             let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
             item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
