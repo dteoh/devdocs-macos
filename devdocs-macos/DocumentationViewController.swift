@@ -303,16 +303,4 @@ extension DocumentationViewController: NavigationToolbarItemDelegate {
             return false;
         }
     }
-
-    func setTargetAndAction(_ button: NSButton, forItem item: NavigationToolbarItem) {
-        button.target = self
-        switch item.itemIdentifier {
-        case .navigateBack:
-            button.action = #selector(goBack)
-        case .navigateForward:
-            button.action = #selector(goForward)
-        default:
-            button.target = nil
-        }
-    }
 }

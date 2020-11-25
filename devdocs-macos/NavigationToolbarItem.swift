@@ -12,5 +12,4 @@ class NavigationToolbarItem: NSToolbarItem {
 
 protocol NavigationToolbarItemDelegate: class {
     func canNavigate(_ item: NavigationToolbarItem) -> Bool
-    func setTargetAndAction(_ button: NSButton, forItem item: NavigationToolbarItem)
 }
