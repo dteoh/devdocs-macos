@@ -106,6 +106,12 @@ class DocumentationWindowController: NSWindowController {
     }
 }
 
+private extension DocumentationWindowController {
+    @objc func openDocumentationInBrowser() {
+        NSWorkspace.shared.open(documentation.url)
+    }
+}
+
 // MARK:- DocumentationViewDelegate
 extension DocumentationWindowController: DocumentationViewDelegate {
     func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void) {
@@ -149,6 +155,7 @@ extension DocumentationWindowController: DocumentationViewDelegate {
 extension NSToolbarItem.Identifier {
     static let historyNavigation: NSToolbarItem.Identifier = NSToolbarItem.Identifier("HistoryNavigation")
     static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ContentSearch")
+    static let openInBrowser: NSToolbarItem.Identifier = NSToolbarItem.Identifier("OpenInBrowser")
 
     // Sub items
     static let navigateBack: NSToolbarItem.Identifier = NSToolbarItem.Identifier("NavigateBack")
@@ -162,12 +169,13 @@ extension DocumentationWindowController: NSToolbarDelegate {
             .historyNavigation,
             .space,
             .flexibleSpace,
+            .openInBrowser,
             .contentSearch
         ]
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [.historyNavigation, .flexibleSpace, .contentSearch]
+        return [.historyNavigation, .flexibleSpace, .openInBrowser, .contentSearch]
     }
 
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
@@ -178,7 +186,7 @@ extension DocumentationWindowController: NSToolbarDelegate {
             backItem.toolTip = backItem.label
             backItem.isBordered = true
             backItem.image = NSImage(systemSymbolName: "chevron.backward",
-                                     accessibilityDescription: NSLocalizedString("Navigate back", comment: "Navigate back"))
+                                     accessibilityDescription: NSLocalizedString("Navigate back", comment: ""))
             backItem.autovalidates = true
 
             let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
@@ -186,13 +194,22 @@ extension DocumentationWindowController: NSToolbarDelegate {
             forwardItem.toolTip = forwardItem.label
             forwardItem.isBordered = true
             forwardItem.image = NSImage(systemSymbolName: "chevron.forward",
-                                        accessibilityDescription: NSLocalizedString("Navigate forward", comment: "Navigate forward"))
+                                        accessibilityDescription: NSLocalizedString("Navigate forward", comment: ""))
             forwardItem.autovalidates = true
 
             let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
             item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
             item.isNavigational = true
             item.subitems = [backItem, forwardItem]
+            return item
+        case .openInBrowser:
+            let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+            item.label = NSLocalizedString("Open in Browser", comment: "Open current page in default system browser")
+            item.toolTip = item.label
+            item.isBordered = true
+            item.image = NSImage(systemSymbolName: "safari",
+                                 accessibilityDescription: NSLocalizedString("Open current page in default system browser", comment: ""))
+            item.autovalidates = true
             return item
         case .contentSearch:
             let item = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
@@ -222,6 +239,9 @@ extension DocumentationWindowController: NSToolbarDelegate {
                     break
                 }
             }
+        case .openInBrowser:
+            item.target = self
+            item.action = #selector(openDocumentationInBrowser)
         case .contentSearch:
             let searchItem = item as! NSSearchToolbarItem
             searchItem.searchField.delegate = documentationViewController
@@ -245,6 +265,9 @@ extension DocumentationWindowController: NSToolbarDelegate {
                 subitem.target = nil
                 subitem.action = nil
             }
+        case .openInBrowser:
+            item.target = nil
+            item.action = nil
         case .contentSearch:
             contentSearchField = nil
 
