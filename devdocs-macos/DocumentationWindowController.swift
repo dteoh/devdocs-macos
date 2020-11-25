@@ -230,7 +230,7 @@ extension DocumentationWindowController: NSToolbarDelegate {
             let searchItem = item as! NSSearchToolbarItem
             searchItem.searchField.delegate = documentationViewController
             searchItem.searchField.target = documentationViewController
-            searchItem.searchField.action = #selector(documentationViewController?.searchPageContents(_:))
+            searchItem.searchField.action = #selector(DocumentationViewController.searchPageContents(_:))
             contentSearchField = searchItem.searchField
         default:
             return
