@@ -147,12 +147,12 @@ extension DocumentationWindowController: DocumentationViewDelegate {
 
 // MARK:- NSToolbarItem.Identifier
 extension NSToolbarItem.Identifier {
-    static let historyNavigation: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "HistoryNavigation")
-    static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "ContentSearch")
+    static let historyNavigation: NSToolbarItem.Identifier = NSToolbarItem.Identifier("HistoryNavigation")
+    static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ContentSearch")
 
     // Sub items
-    static let navigateBack: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "NavigateBack")
-    static let navigateForward: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "NavigateForward")
+    static let navigateBack: NSToolbarItem.Identifier = NSToolbarItem.Identifier("NavigateBack")
+    static let navigateForward: NSToolbarItem.Identifier = NSToolbarItem.Identifier("NavigateForward")
 }
 
 // MARK:- NSToolbarDelegate
