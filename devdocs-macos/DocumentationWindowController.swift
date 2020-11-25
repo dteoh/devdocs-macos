@@ -173,7 +173,7 @@ extension DocumentationWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
         case .historyNavigation:
-            let backItem = NavigationToolbarItem(itemIdentifier: .navigateBack)
+            let backItem = NSToolbarItem(itemIdentifier: .navigateBack)
             do {
                 backItem.label = NSLocalizedString("Back", comment: "Navigate back")
                 backItem.toolTip = backItem.label
@@ -183,7 +183,7 @@ extension DocumentationWindowController: NSToolbarDelegate {
                 backItem.autovalidates = true
             }
 
-            let forwardItem = NavigationToolbarItem(itemIdentifier: .navigateForward)
+            let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
             do {
                 forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
                 forwardItem.toolTip = forwardItem.label
@@ -216,14 +216,12 @@ extension DocumentationWindowController: NSToolbarDelegate {
         case .historyNavigation:
             let itemGroup = item as! NSToolbarItemGroup
             for subitem in itemGroup.subitems {
-                let navigationItem = subitem as! NavigationToolbarItem
-                navigationItem.navigationDelegate = documentationViewController
-                navigationItem.target = documentationViewController
-                switch navigationItem.itemIdentifier {
+                subitem.target = documentationViewController
+                switch subitem.itemIdentifier {
                 case .navigateBack:
-                    navigationItem.action = #selector(DocumentationViewController.goBack)
+                    subitem.action = #selector(DocumentationViewController.goBack)
                 case .navigateForward:
-                    navigationItem.action = #selector(DocumentationViewController.goForward)
+                    subitem.action = #selector(DocumentationViewController.goForward)
                 default:
                     break
                 }
@@ -248,10 +246,8 @@ extension DocumentationWindowController: NSToolbarDelegate {
         case .historyNavigation:
             let itemGroup = item as! NSToolbarItemGroup
             for subitem in itemGroup.subitems {
-                let navigationItem = subitem as! NavigationToolbarItem
-                navigationItem.navigationDelegate = nil
-                navigationItem.target = nil
-                navigationItem.action = nil
+                subitem.target = nil
+                subitem.action = nil
             }
         case .contentSearch:
             contentSearchField = nil

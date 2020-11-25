@@ -22,7 +22,6 @@
 		06B5A73921D3665C007823B2 /* DefaultsKit.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */; };
 		06B5A73B21D36680007823B2 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B5A73A21D36680007823B2 /* Storage.swift */; };
 		06CAA897223E6ACB00B296AC /* URLEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CAA896223E6ACB00B296AC /* URLEventHandler.swift */; };
-		06CFC3B8256CE31B00330C5D /* NavigationToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CFC3B7256CE31B00330C5D /* NavigationToolbarItem.swift */; };
 		06EAE7ED21D0CB3D00F7C921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */; };
 		06EAE7EF21D0CB3E00F7C921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */; };
 		06EAE7F221D0CB3E00F7C921 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */; };
@@ -72,7 +71,6 @@
 		06B5A73821D3665C007823B2 /* DefaultsKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = DefaultsKit.framework.dSYM; path = Carthage/Build/Mac/DefaultsKit.framework.dSYM; sourceTree = "<group>"; };
 		06B5A73A21D36680007823B2 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		06CAA896223E6ACB00B296AC /* URLEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEventHandler.swift; sourceTree = "<group>"; };
-		06CFC3B7256CE31B00330C5D /* NavigationToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationToolbarItem.swift; sourceTree = "<group>"; };
 		06EAE7E921D0CB3D00F7C921 /* DevDocs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevDocs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06EAE7EC21D0CB3D00F7C921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06EAE7EE21D0CB3E00F7C921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				06B5A73021D354FC007823B2 /* DocumentationWindows.swift */,
 				061A0544246E275200CCFC1A /* GeneralPreferences.swift */,
 				06EAE7F021D0CB3E00F7C921 /* MainMenu.xib */,
-				06CFC3B7256CE31B00330C5D /* NavigationToolbarItem.swift */,
 				06996D3A223DEF54001507AD /* PreferencesWindowController.swift */,
 				06996D3B223DEF54001507AD /* PreferencesWindowController.xib */,
 				06B5A73A21D36680007823B2 /* Storage.swift */,
@@ -230,7 +227,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				06996D2D223DDBEB001507AD /* Summoner.swift in Sources */,
-				06CFC3B8256CE31B00330C5D /* NavigationToolbarItem.swift in Sources */,
 				06EAE7FF21D0FA4000F7C921 /* DocumentationViewController.swift in Sources */,
 				06996D3C223DEF54001507AD /* PreferencesWindowController.swift in Sources */,
 				06B5A73121D354FC007823B2 /* DocumentationWindows.swift in Sources */,

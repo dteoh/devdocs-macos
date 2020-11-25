@@ -105,6 +105,14 @@ class DocumentationViewController: NSViewController {
 
     // MARK:- Navigation
 
+    func canGoBack() -> Bool {
+        return webView.backForwardList.backItem.map { _ in true } ?? false
+    }
+
+    func canGoForward() -> Bool {
+        return webView.backForwardList.forwardItem.map { _ in true } ?? false
+    }
+
     @objc func goBack() {
         webView.evaluateJavaScript("window.history.back();");
     }
@@ -291,16 +299,15 @@ extension DocumentationViewController: NSSearchFieldDelegate {
     }
 }
 
-// MARK:- NavigationToolbarItemDelegate
-extension DocumentationViewController: NavigationToolbarItemDelegate {
-    func canNavigate(_ item: NavigationToolbarItem) -> Bool {
-        switch item.itemIdentifier {
-        case .navigateBack:
-            return webView.backForwardList.backItem.map { _ in true } ?? false
-        case .navigateForward:
-            return webView.backForwardList.forwardItem.map { _ in true } ?? false
-        default:
-            return false;
+// MARK:- NSUserInterfaceValidations
+extension DocumentationViewController: NSUserInterfaceValidations {
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        if item.action == #selector(goBack) {
+            return canGoBack()
         }
+        if item.action == #selector(goForward) {
+            return canGoForward()
+        }
+        return false
     }
 }
