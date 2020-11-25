@@ -3,13 +3,11 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
-        <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DocumentationWindowController" customModule="DevDocs" customModuleProvider="target">
             <connections>
-                <outlet property="contentSearchField" destination="nuW-bv-dAc" id="VBO-Nb-W9g"/>
                 <outlet property="documentationViewController" destination="f61-KY-zVD" id="SGK-n1-U1U"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LfB-8c-kAm"/>
             </connections>
@@ -20,37 +18,11 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="600"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2135"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="3EDBA340-82E0-4F6D-A2E5-B64C00F706AB" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="RPh-lZ-I7q">
-                <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="djD-j7-CRO"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="C4V-Bf-4rP"/>
-                    <searchToolbarItem implicitItemIdentifier="199BC3E6-5F40-416D-9966-397495A3A2D8" label="Search" paletteLabel="Search" visibilityPriority="1001" id="6OC-fj-Lhe">
-                        <nil key="toolTip"/>
-                        <searchField key="view" verticalHuggingPriority="750" textCompletion="NO" id="nuW-bv-dAc">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" recentsAutosaveName="content-search-term" id="elf-l7-B2W">
-                                <font key="font" usesAppearanceFont="YES"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </searchFieldCell>
-                            <connections>
-                                <action selector="searchPageContents:" target="f61-KY-zVD" id="ZAe-5r-fMu"/>
-                                <outlet property="delegate" destination="f61-KY-zVD" id="6cm-hv-cR5"/>
-                            </connections>
-                        </searchField>
-                    </searchToolbarItem>
-                </allowedToolbarItems>
-                <defaultToolbarItems>
-                    <toolbarItem reference="C4V-Bf-4rP"/>
-                    <searchToolbarItem reference="6OC-fj-Lhe"/>
-                </defaultToolbarItems>
-            </toolbar>
             <point key="canvasLocation" x="-106" y="107"/>
         </window>
         <customObject id="f61-KY-zVD" customClass="DocumentationViewController" customModule="DevDocs" customModuleProvider="target">

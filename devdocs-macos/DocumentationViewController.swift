@@ -103,6 +103,24 @@ class DocumentationViewController: NSViewController {
         webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
     }
 
+    // MARK:- Navigation
+
+    func canGoBack() -> Bool {
+        return webView.backForwardList.backItem.map { _ in true } ?? false
+    }
+
+    func canGoForward() -> Bool {
+        return webView.backForwardList.forwardItem.map { _ in true } ?? false
+    }
+
+    @objc func goBack() {
+        webView.evaluateJavaScript("window.history.back();");
+    }
+
+    @objc func goForward() {
+        webView.evaluateJavaScript("window.history.forward();");
+    }
+
     // MARK:- JS integration
 
     func useNativeScrollbars(_ using: Bool) {
@@ -278,5 +296,18 @@ extension DocumentationViewController: WKScriptMessageHandler {
 extension DocumentationViewController: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_ sender: NSSearchField) {
         webView.evaluateJavaScript("resetSearch();")
+    }
+}
+
+// MARK:- NSUserInterfaceValidations
+extension DocumentationViewController: NSUserInterfaceValidations {
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        if item.action == #selector(goBack) {
+            return canGoBack()
+        }
+        if item.action == #selector(goForward) {
+            return canGoForward()
+        }
+        return false
     }
 }

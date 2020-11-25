@@ -3,11 +3,11 @@ import WebKit
 
 class DocumentationWindowController: NSWindowController {
 
-    @IBOutlet weak var contentSearchField: NSSearchField?
     @IBOutlet weak var documentationViewController: DocumentationViewController?
 
     var documentation: Documentation!
     private var observations: Set<NSKeyValueObservation>!
+    private weak var contentSearchField: NSSearchField?
 
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("DocumentationWindow")
@@ -25,6 +25,8 @@ class DocumentationWindowController: NSWindowController {
 
     override func windowDidLoad() {
         guard let dvc = documentationViewController else { return }
+
+        setupToolbar()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(observeViewerState),
@@ -50,6 +52,20 @@ class DocumentationWindowController: NSWindowController {
                                                selector: #selector(observeMenuFindAction),
                                                name: .MenuFindAction,
                                                object: nil)
+    }
+
+    private func setupToolbar() {
+        let toolbar = NSToolbar(identifier: "DocumentationWindowToolbar")
+        toolbar.allowsUserCustomization = true
+        toolbar.autosavesConfiguration = true
+        toolbar.displayMode = .iconOnly
+        toolbar.delegate = self
+
+        if let window = window {
+            window.titlebarAppearsTransparent = true
+            window.toolbarStyle = .automatic
+            window.toolbar = toolbar
+        }
     }
 
     // MARK:- NotificationCenter observers
@@ -125,6 +141,119 @@ extension DocumentationWindowController: DocumentationViewDelegate {
                     NSApplication.shared.presentError(error)
                 }
             }
+        }
+    }
+}
+
+// MARK:- NSToolbarItem.Identifier
+extension NSToolbarItem.Identifier {
+    static let historyNavigation: NSToolbarItem.Identifier = NSToolbarItem.Identifier("HistoryNavigation")
+    static let contentSearch: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ContentSearch")
+
+    // Sub items
+    static let navigateBack: NSToolbarItem.Identifier = NSToolbarItem.Identifier("NavigateBack")
+    static let navigateForward: NSToolbarItem.Identifier = NSToolbarItem.Identifier("NavigateForward")
+}
+
+// MARK:- NSToolbarDelegate
+extension DocumentationWindowController: NSToolbarDelegate {
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [
+            .historyNavigation,
+            .space,
+            .flexibleSpace,
+            .contentSearch
+        ]
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [.historyNavigation, .flexibleSpace, .contentSearch]
+    }
+
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        switch itemIdentifier {
+        case .historyNavigation:
+            let backItem = NSToolbarItem(itemIdentifier: .navigateBack)
+            backItem.label = NSLocalizedString("Back", comment: "Navigate back")
+            backItem.toolTip = backItem.label
+            backItem.isBordered = true
+            backItem.image = NSImage(systemSymbolName: "chevron.backward",
+                                     accessibilityDescription: NSLocalizedString("Navigate back", comment: "Navigate back"))
+            backItem.autovalidates = true
+
+            let forwardItem = NSToolbarItem(itemIdentifier: .navigateForward)
+            forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
+            forwardItem.toolTip = forwardItem.label
+            forwardItem.isBordered = true
+            forwardItem.image = NSImage(systemSymbolName: "chevron.forward",
+                                        accessibilityDescription: NSLocalizedString("Navigate forward", comment: "Navigate forward"))
+            forwardItem.autovalidates = true
+
+            let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
+            item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
+            item.isNavigational = true
+            item.subitems = [backItem, forwardItem]
+            return item
+        case .contentSearch:
+            let item = NSSearchToolbarItem(itemIdentifier: itemIdentifier)
+            item.searchField.recentsAutosaveName = NSSearchField.RecentsAutosaveName("content-search-term")
+            return item
+        default:
+            return nil
+        }
+    }
+
+    func toolbarWillAddItem(_ notification: Notification) {
+        guard let item = notification.userInfo?["item"] as? NSToolbarItem else {
+            return
+        }
+
+        switch item.itemIdentifier {
+        case .historyNavigation:
+            let itemGroup = item as! NSToolbarItemGroup
+            for subitem in itemGroup.subitems {
+                subitem.target = documentationViewController
+                switch subitem.itemIdentifier {
+                case .navigateBack:
+                    subitem.action = #selector(DocumentationViewController.goBack)
+                case .navigateForward:
+                    subitem.action = #selector(DocumentationViewController.goForward)
+                default:
+                    break
+                }
+            }
+        case .contentSearch:
+            let searchItem = item as! NSSearchToolbarItem
+            searchItem.searchField.delegate = documentationViewController
+            searchItem.searchField.target = documentationViewController
+            searchItem.searchField.action = #selector(DocumentationViewController.searchPageContents(_:))
+            contentSearchField = searchItem.searchField
+        default:
+            return
+        }
+    }
+
+    func toolbarDidRemoveItem(_ notification: Notification) {
+        guard let item = notification.userInfo?["item"] as? NSToolbarItem else {
+            return
+        }
+
+        switch item.itemIdentifier {
+        case .historyNavigation:
+            let itemGroup = item as! NSToolbarItemGroup
+            for subitem in itemGroup.subitems {
+                subitem.target = nil
+                subitem.action = nil
+            }
+        case .contentSearch:
+            contentSearchField = nil
+
+            let searchItem = item as! NSSearchToolbarItem
+            searchItem.searchField.delegate = nil
+            searchItem.searchField.target = nil
+            searchItem.searchField.action = nil
+        default:
+            return
         }
     }
 }
