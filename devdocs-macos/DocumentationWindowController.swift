@@ -53,8 +53,10 @@ class DocumentationWindowController: NSWindowController {
                                                name: .MenuFindAction,
                                                object: nil)
     }
+}
 
-    private func setupToolbar() {
+private extension DocumentationWindowController {
+    func setupToolbar() {
         let toolbar = NSToolbar(identifier: "DocumentationWindowToolbar")
         toolbar.allowsUserCustomization = true
         toolbar.autosavesConfiguration = true
@@ -68,9 +70,13 @@ class DocumentationWindowController: NSWindowController {
         }
     }
 
+    @objc func openDocumentationInBrowser() {
+        NSWorkspace.shared.open(documentation.url)
+    }
+
     // MARK:- NotificationCenter observers
 
-    @objc private func observeViewerState() {
+    @objc func observeViewerState() {
         guard let dvc = documentationViewController else { return }
 
         if dvc.viewerState != .ready {
@@ -81,34 +87,28 @@ class DocumentationWindowController: NSWindowController {
         dvc.useNativeScrollbars(true)
     }
 
-    @objc private func observeDocumentTitle() {
+    @objc func observeDocumentTitle() {
         guard let dvc = documentationViewController else { return }
         self.window?.title = dvc.documentTitle ?? "DevDocs"
     }
 
-    @objc private func observeDocumentCategory() {
+    @objc func observeDocumentCategory() {
         guard let dvc = documentationViewController else { return }
         self.window?.subtitle = dvc.documentCategory ?? ""
     }
 
-    @objc private func observeDocumentURL() {
+    @objc func observeDocumentURL() {
         guard let dvc = documentationViewController else { return }
         self.documentation.url = dvc.documentURL
     }
 
-    @objc private func observeMenuFindAction() {
+    @objc func observeMenuFindAction() {
         guard let window = self.window else { return }
         if !window.isKeyWindow {
             return
         }
 
         window.makeFirstResponder(contentSearchField)
-    }
-}
-
-private extension DocumentationWindowController {
-    @objc func openDocumentationInBrowser() {
-        NSWorkspace.shared.open(documentation.url)
     }
 }
 
