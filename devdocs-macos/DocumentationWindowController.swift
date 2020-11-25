@@ -7,7 +7,7 @@ class DocumentationWindowController: NSWindowController {
 
     var documentation: Documentation!
     private var observations: Set<NSKeyValueObservation>!
-    private var contentSearchField: NSSearchField?
+    private weak var contentSearchField: NSSearchField?
 
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("DocumentationWindow")
