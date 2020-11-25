@@ -173,14 +173,32 @@ extension DocumentationWindowController: NSToolbarDelegate {
             item.isNavigational = true
 
             let backItem = NavigationToolbarItem(itemIdentifier: .navigateBack)
-            backItem.label = NSLocalizedString("Back", comment: "Navigate back")
-            backItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: backItem.label)
-            backItem.autovalidates = true
+            do {
+                backItem.label = NSLocalizedString("Back", comment: "Navigate back")
+                backItem.toolTip = backItem.label
+                backItem.autovalidates = true
+
+                let button = NSButton()
+                button.bezelStyle = .texturedRounded
+                button.image = NSImage(systemSymbolName: "chevron.backward",
+                                       accessibilityDescription: NSLocalizedString("Navigate back", comment: "Navigate back"))
+                button.imageScaling = .scaleProportionallyDown
+                backItem.view = button
+            }
 
             let forwardItem = NavigationToolbarItem(itemIdentifier: .navigateForward)
-            forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
-            forwardItem.image = NSImage(systemSymbolName: "chevron.forward", accessibilityDescription: forwardItem.label)
-            forwardItem.autovalidates = true
+            do {
+                forwardItem.label = NSLocalizedString("Forward", comment: "Navigate forward")
+                forwardItem.toolTip = forwardItem.label
+                forwardItem.autovalidates = true
+
+                let button = NSButton()
+                button.bezelStyle = .texturedRounded
+                button.image = NSImage(systemSymbolName: "chevron.forward",
+                                       accessibilityDescription: NSLocalizedString("Navigate forward", comment: "Navigate forward"))
+                button.imageScaling = .scaleProportionallyDown
+                forwardItem.view = button
+            }
 
             item.subitems = [backItem, forwardItem]
             return item
@@ -204,8 +222,9 @@ extension DocumentationWindowController: NSToolbarDelegate {
             for subitem in itemGroup.subitems {
                 let navigationItem = subitem as! NavigationToolbarItem
                 navigationItem.navigationDelegate = documentationViewController
-                navigationItem.target = documentationViewController
-                navigationItem.action = #selector(documentationViewController?.navigate(_:))
+                if let button = navigationItem.view as! NSButton? {
+                    documentationViewController?.setTargetAndAction(button, forItem: navigationItem)
+                }
             }
         case .contentSearch:
             let searchItem = item as! NSSearchToolbarItem
@@ -229,8 +248,10 @@ extension DocumentationWindowController: NSToolbarDelegate {
             for subitem in itemGroup.subitems {
                 let navigationItem = subitem as! NavigationToolbarItem
                 navigationItem.navigationDelegate = nil
-                navigationItem.target = nil
-                navigationItem.action = nil
+                if let button = navigationItem.view as! NSButton? {
+                    button.target = nil
+                    button.action = nil
+                }
             }
         case .contentSearch:
             contentSearchField = nil

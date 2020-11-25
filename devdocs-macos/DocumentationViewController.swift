@@ -103,6 +103,16 @@ class DocumentationViewController: NSViewController {
         webView.evaluateJavaScript("search( (\(args))[\"term\"] );")
     }
 
+    // MARK:- Navigation
+
+    @objc func goBack() {
+        webView.evaluateJavaScript("window.history.back();");
+    }
+
+    @objc func goForward() {
+        webView.evaluateJavaScript("window.history.forward();");
+    }
+
     // MARK:- JS integration
 
     func useNativeScrollbars(_ using: Bool) {
@@ -294,14 +304,15 @@ extension DocumentationViewController: NavigationToolbarItemDelegate {
         }
     }
 
-    @IBAction func navigate(_ sender: NavigationToolbarItem) {
-        switch sender.itemIdentifier {
+    func setTargetAndAction(_ button: NSButton, forItem item: NavigationToolbarItem) {
+        button.target = self
+        switch item.itemIdentifier {
         case .navigateBack:
-            webView.evaluateJavaScript("window.history.back();")
+            button.action = #selector(goBack)
         case .navigateForward:
-            webView.evaluateJavaScript("window.history.forward();")
+            button.action = #selector(goForward)
         default:
-            return;
+            button.target = nil
         }
     }
 }
