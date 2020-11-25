@@ -168,10 +168,6 @@ extension DocumentationWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         switch itemIdentifier {
         case .historyNavigation:
-            let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
-            item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
-            item.isNavigational = true
-
             let backItem = NavigationToolbarItem(itemIdentifier: .navigateBack)
             do {
                 backItem.label = NSLocalizedString("Back", comment: "Navigate back")
@@ -192,6 +188,9 @@ extension DocumentationWindowController: NSToolbarDelegate {
                 forwardItem.autovalidates = true
             }
 
+            let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
+            item.label = NSLocalizedString("Back / Forward", comment: "History navigation")
+            item.isNavigational = true
             item.subitems = [backItem, forwardItem]
             return item
         case .contentSearch:
