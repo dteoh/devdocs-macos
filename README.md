@@ -83,8 +83,10 @@ $ brew cask install dteoh-devdocs
 
 ### Compatibility
 
-The app is currently developed on Mojave and only support for Mojave can be
-provided.
+The app is currently developed on Big Sur and only support for Big Sur
+can be provided.
+
+If you are using Mojave (10.14) or Catalina (10.15), please use version 0.5.2.
 
 ## License
 
