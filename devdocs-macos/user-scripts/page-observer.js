@@ -6,7 +6,7 @@
       return {}
     }
     return {
-      doc: entry.doc.name,
+      doc: entry.doc.fullName,
       topic: entry.name
     }
   }
