@@ -12,8 +12,11 @@ public extension Notification.Name {
         rawValue: "DocumentationViewControllerViewerStateDidChangeNotification")
 }
 
-class DocumentationViewController: NSViewController {
+extension WKProcessPool {
+    static let shared = WKProcessPool()
+}
 
+class DocumentationViewController: NSViewController {
     enum ViewerState {
         case blank
         case initializing
@@ -60,11 +63,13 @@ class DocumentationViewController: NSViewController {
 
     private func setupWebView() {
         let config = WKWebViewConfiguration()
+        config.processPool = WKProcessPool.shared
+        config.websiteDataStore = WKWebsiteDataStore.default()
 
         let userContentController = WKUserContentController()
-        config.userContentController = userContentController;
+        config.userContentController = userContentController
 
-        userContentController.add(self, name: "vcBus");
+        userContentController.add(self, name: "vcBus")
 
         if let integrationScript = readUserScript("integration") {
             let integration = WKUserScript(source: integrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: true)
