@@ -83,6 +83,7 @@ class DocumentationViewController: NSViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.wantsLayer = true
+        webView.pageZoom = CGFloat(GeneralPreferences.pageZoom())
         // not possible to set "opaque" property, not possible to set backgroundColor...
         webView.setValue(false, forKey: "drawsBackground")
 
