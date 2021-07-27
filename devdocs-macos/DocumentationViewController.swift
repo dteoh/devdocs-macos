@@ -13,7 +13,7 @@ public extension Notification.Name {
 }
 
 extension WKProcessPool {
-    static let Default = WKProcessPool()
+    static let shared = WKProcessPool()
 }
 
 class DocumentationViewController: NSViewController {
@@ -63,7 +63,7 @@ class DocumentationViewController: NSViewController {
 
     private func setupWebView() {
         let config = WKWebViewConfiguration()
-        config.processPool = WKProcessPool.Default
+        config.processPool = WKProcessPool.shared
         config.websiteDataStore = WKWebsiteDataStore.default()
 
         let userContentController = WKUserContentController()
