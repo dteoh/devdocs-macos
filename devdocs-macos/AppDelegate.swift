@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Summoner.shared.install()
 
-        if GeneralPreferences.shouldRestoreDocs() {
+        if GeneralPreferences.shouldRestoreDocs {
             DocumentationWindows.shared.restore()
         }
 

@@ -7,7 +7,6 @@ private extension DefaultsKey {
 }
 
 class GeneralPreferences {
-
     private init() {
     }
 
@@ -17,8 +16,10 @@ class GeneralPreferences {
         defs.set(1.0, for: .pageZoom)
     }
 
-    class func shouldRestoreDocs() -> Bool {
-        return Defaults.shared.get(for: .restoreDocs) ?? true
+    static var shouldRestoreDocs: Bool {
+        get {
+            return Defaults.shared.get(for: .restoreDocs) ?? true
+        }
     }
 
     static var pageZoom: Float {
