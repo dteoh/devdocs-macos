@@ -213,7 +213,7 @@ class DocumentationViewController: NSViewController {
     }
 }
 
-protocol DocumentationViewDelegate: class {
+protocol DocumentationViewDelegate: AnyObject {
     typealias OpenPanelParameters = WKOpenPanelParameters
     func selectFileToOpen(_ parameters: OpenPanelParameters, completionHandler: @escaping ([URL]?) -> Void)
     func savePreferencesToFile(_ preferences: String)
