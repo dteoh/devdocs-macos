@@ -16,7 +16,6 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="300" height="193"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2135"/>
             <value key="minSize" type="size" width="300" height="150"/>
@@ -91,17 +90,11 @@
                             </gridCell>
                             <gridCell row="OGO-ef-oHz" column="3zb-nY-eFJ" id="0Gc-vb-5Wc">
                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AfN-rU-RiE">
-                                    <rect key="frame" x="101" y="58" width="106" height="25"/>
-                                    <popUpButtonCell key="cell" type="push" title="Zoom level" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="qoL-ZH-Frx" id="Tm7-tn-MO5">
+                                    <rect key="frame" x="101" y="58" width="39" height="25"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Tm7-tn-MO5">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="MqF-ZB-jc3">
-                                            <items>
-                                                <menuItem title="Zoom level" state="on" id="qoL-ZH-Frx"/>
-                                                <menuItem title="Item 2" id="26r-hg-43U"/>
-                                                <menuItem title="Item 3" id="T3P-YK-KjO"/>
-                                            </items>
-                                        </menu>
+                                        <menu key="menu" id="MqF-ZB-jc3"/>
                                     </popUpButtonCell>
                                     <connections>
                                         <action selector="pageZoomPopupDidChangeValue:" target="-2" id="3aX-GS-1Eu"/>
