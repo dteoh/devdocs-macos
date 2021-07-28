@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="DevDocs" customModuleProvider="target">
             <connections>
                 <outlet property="masShortcutRecorderView" destination="8hA-DH-I7Z" id="orq-Ez-K1f"/>
+                <outlet property="pageZoomPopup" destination="AfN-rU-RiE" id="8m5-iX-OJI"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -17,19 +17,21 @@
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="300" height="150"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="contentRect" x="196" y="240" width="300" height="193"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="3840" height="2135"/>
             <value key="minSize" type="size" width="300" height="150"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="193"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <gridView fixedFrame="YES" xPlacement="none" yPlacement="none" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="L0m-3Z-iRC">
-                        <rect key="frame" x="30" y="17" width="240" height="116"/>
+                        <rect key="frame" x="30" y="20" width="246" height="156"/>
                         <rows>
                             <gridRow yPlacement="center" rowAlignment="none" bottomPadding="8" id="oya-rS-Vwn"/>
                             <gridRow bottomPadding="8" id="eSU-Fq-qHb"/>
-                            <gridRow yPlacement="bottom" height="42" id="Gra-w4-ZpZ"/>
+                            <gridRow id="OGO-ef-oHz"/>
+                            <gridRow id="2XF-zF-Tdr"/>
+                            <gridRow id="Vd2-4l-trI"/>
                         </rows>
                         <columns>
                             <gridColumn xPlacement="trailing" id="cgL-ew-iuH"/>
@@ -38,7 +40,7 @@
                         <gridCells>
                             <gridCell row="oya-rS-Vwn" column="cgL-ew-iuH" id="5Bh-Cw-A9Z">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLs-UG-n2b">
-                                    <rect key="frame" x="-2" y="93" width="102" height="16"/>
+                                    <rect key="frame" x="-2" y="133" width="102" height="16"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Global shortcut:" id="U8G-v4-cE9">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -48,12 +50,12 @@
                             </gridCell>
                             <gridCell row="oya-rS-Vwn" column="3zb-nY-eFJ" id="BpC-vH-U6D">
                                 <customView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-DH-I7Z" customClass="MASShortcutView">
-                                    <rect key="frame" x="104" y="86" width="100" height="30"/>
+                                    <rect key="frame" x="104" y="126" width="100" height="30"/>
                                 </customView>
                             </gridCell>
                             <gridCell row="eSU-Fq-qHb" column="cgL-ew-iuH" id="Ktb-Mk-2mJ">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v5E-4j-dS4">
-                                    <rect key="frame" x="47" y="56" width="53" height="16"/>
+                                    <rect key="frame" x="46" y="96" width="54" height="16"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Startup:" id="7Ml-td-ltB">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +65,7 @@
                             </gridCell>
                             <gridCell row="eSU-Fq-qHb" column="3zb-nY-eFJ" id="yIA-9o-EA6">
                                 <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UP0-PV-5sP">
-                                    <rect key="frame" x="102" y="55" width="140" height="18"/>
+                                    <rect key="frame" x="102" y="95" width="144" height="18"/>
                                     <buttonCell key="cell" type="check" title="Restore documents" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pK0-Ox-QTp">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -77,9 +79,41 @@
                                     </connections>
                                 </button>
                             </gridCell>
-                            <gridCell row="Gra-w4-ZpZ" column="cgL-ew-iuH" headOfMergedCell="ktl-eK-akI" id="ktl-eK-akI">
+                            <gridCell row="OGO-ef-oHz" column="cgL-ew-iuH" id="5m9-gS-4xj">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Oeg-Ip-DAa">
+                                    <rect key="frame" x="25" y="65" width="75" height="16"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Page zoom:" id="Etm-YM-51V">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="OGO-ef-oHz" column="3zb-nY-eFJ" id="0Gc-vb-5Wc">
+                                <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AfN-rU-RiE">
+                                    <rect key="frame" x="101" y="58" width="106" height="25"/>
+                                    <popUpButtonCell key="cell" type="push" title="Zoom level" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="qoL-ZH-Frx" id="Tm7-tn-MO5">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="MqF-ZB-jc3">
+                                            <items>
+                                                <menuItem title="Zoom level" state="on" id="qoL-ZH-Frx"/>
+                                                <menuItem title="Item 2" id="26r-hg-43U"/>
+                                                <menuItem title="Item 3" id="T3P-YK-KjO"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="pageZoomPopupDidChangeValue:" target="-2" id="3aX-GS-1Eu"/>
+                                    </connections>
+                                </popUpButton>
+                            </gridCell>
+                            <gridCell row="2XF-zF-Tdr" column="cgL-ew-iuH" id="8h0-hF-RHo"/>
+                            <gridCell row="2XF-zF-Tdr" column="3zb-nY-eFJ" id="eCQ-l4-o4e"/>
+                            <gridCell row="Vd2-4l-trI" column="cgL-ew-iuH" id="Xo0-Jm-S00"/>
+                            <gridCell row="Vd2-4l-trI" column="3zb-nY-eFJ" id="ke7-Up-4Kh">
                                 <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kUZ-2D-ASu">
-                                    <rect key="frame" x="95" y="-7" width="151" height="32"/>
+                                    <rect key="frame" x="97" y="-7" width="146" height="32"/>
                                     <buttonCell key="cell" type="push" title="Restore defaults..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r9Z-qe-Up0">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -89,7 +123,6 @@
                                     </connections>
                                 </button>
                             </gridCell>
-                            <gridCell row="Gra-w4-ZpZ" column="3zb-nY-eFJ" headOfMergedCell="ktl-eK-akI" id="ENg-Zr-n8t"/>
                         </gridCells>
                     </gridView>
                 </subviews>
@@ -97,7 +130,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-104" y="-5"/>
+            <point key="canvasLocation" x="-926" y="-376.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="E4w-VZ-Y12"/>
     </objects>
