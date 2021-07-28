@@ -11,14 +11,17 @@ class GeneralPreferences {
     }
 
     class func restoreDefaults() {
-        let defs = Defaults.shared
-        defs.set(true, for: .restoreDocs)
-        defs.set(1.0, for: .pageZoom)
+        self.shouldRestoreDocs = true
+        self.pageZoom = 1.0
     }
 
     static var shouldRestoreDocs: Bool {
         get {
             return Defaults.shared.get(for: .restoreDocs) ?? true
+        }
+
+        set {
+            Defaults.shared.set(newValue, for: .restoreDocs)
         }
     }
 

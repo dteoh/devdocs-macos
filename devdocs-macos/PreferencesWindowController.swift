@@ -14,26 +14,21 @@ class PreferencesWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
-        let pageZoomPreference = GeneralPreferences.pageZoom
         let pageZoomMenu = NSMenu()
-        var pageZoomSelection = 0
-        for (i, option) in GeneralPreferences.pageZoomOptions.enumerated() {
+        for option in GeneralPreferences.pageZoomOptions {
             let menuItem = NSMenuItem()
             menuItem.title = option.0
             menuItem.representedObject = option.1
             pageZoomMenu.addItem(menuItem)
-
-            if pageZoomPreference == option.1 {
-                pageZoomSelection = i
-            }
         }
         pageZoomPopup.menu = pageZoomMenu
-        pageZoomPopup.selectItem(at: pageZoomSelection)
 
         if let recorderView = masShortcutRecorderView {
             recorderView.style = .texturedRect
             recorderView.associatedUserDefaultsKey = Summoner.prefsKey
         }
+
+        updateUI()
     }
 
     @IBAction func pageZoomPopupDidChangeValue(_ sender: Any) {
@@ -47,5 +42,18 @@ class PreferencesWindowController: NSWindowController {
             recorderView.shortcutValue = Summoner.defaultShortcut
         }
         GeneralPreferences.restoreDefaults()
+        updateUI()
+    }
+}
+
+private extension PreferencesWindowController {
+    private func updateUI() {
+        let pageZoomPreference = GeneralPreferences.pageZoom
+        for menuItem in pageZoomPopup.menu?.items ?? [] {
+            if let value = menuItem.representedObject as? Float, value == pageZoomPreference {
+                pageZoomPopup.select(menuItem)
+                break
+            }
+        }
     }
 }
