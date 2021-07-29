@@ -28,6 +28,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DocumentationWindows.shared.persist()
     }
 
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        DocumentationWindows.shared.newWindowIfNoWindow()
+        return true
+    }
+
     @IBAction func newTab(_ sender: Any) {
         DocumentationWindows.shared.newWindow()
     }
