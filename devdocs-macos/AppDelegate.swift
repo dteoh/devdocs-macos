@@ -29,12 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        if flag {
-            return false
-        } else {
-            DocumentationWindows.shared.newWindow()
-            return true
-        }
+        DocumentationWindows.shared.newWindowIfNoWindow()
+        return true
     }
 
     @IBAction func newTab(_ sender: Any) {
