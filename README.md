@@ -93,7 +93,7 @@ If you are using Mojave (10.14) or Catalina (10.15), please use version 0.5.2.
 ```
 DevDocs for macOS
 
-Copyright (C) 2020 Douglas Teoh
+Copyright (C) 2021 Douglas Teoh
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
