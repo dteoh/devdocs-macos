@@ -65,7 +65,7 @@ Unzip, drag the app to Applications, and then run it.
 If you wish to install the application from Homebrew:
 
 ```
-$ brew cask install dteoh-devdocs
+$ brew install --cask dteoh-devdocs
 ```
 
 The application will live at `/Applications/DevDocs.app`.
@@ -76,9 +76,9 @@ The application had a tap maintained by the project. To migrate to the default
 tap:
 
 ```
-$ brew cask uninstall devdocs-macos
+$ brew uninstall --cask devdocs-macos
 $ brew untap dteoh/devdocs
-$ brew cask install dteoh-devdocs
+$ brew install --cask dteoh-devdocs
 ```
 
 ### Compatibility
