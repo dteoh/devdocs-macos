@@ -76,9 +76,9 @@ The application had a tap maintained by the project. To migrate to the default
 tap:
 
 ```
-$ brew cask uninstall devdocs-macos
+$ brew uninstall --cask devdocs-macos
 $ brew untap dteoh/devdocs
-$ brew cask install dteoh-devdocs
+$ brew install --cask dteoh-devdocs
 ```
 
 ### Compatibility
